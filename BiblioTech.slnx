@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Documentacion/">
+    <File Path="../Agent.md" />
+    <File Path="../analisis.md" />
+    <File Path="../arquitectura.md" />
+    <File Path="../BD.md" />
+    <File Path="../design.md" />
+  </Folder>
+  <Project Path="BiblioTech.API/BiblioTech.API.csproj" />
+  <Project Path="BiblioTech.Application/BiblioTech.Application.csproj" />
+  <Project Path="BiblioTech.Domain/BiblioTech.Domain.csproj" />
+  <Project Path="BiblioTech.Infrastructure/BiblioTech.Infrastructure.csproj" />
+  <Project Path="BiblioTech.Tests/BiblioTech.Tests.csproj" />
+</Solution>

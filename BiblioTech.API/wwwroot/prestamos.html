@@ -1,0 +1,260 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Gestión de Préstamos - BiblioTech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "on-surface-variant": "#444933",
+                        "surface-bright": "#fdf8f8",
+                        "primary-fixed-dim": "#abd600",
+                        "on-primary-container": "#556d00",
+                        "background": "#fdf8f8",
+                        "surface-dim": "#ddd9d8",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#006a6a",
+                        "secondary-container": "#fe00fe",
+                        "on-tertiary-fixed": "#002020",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#15fbfb",
+                        "outline": "#747a61",
+                        "on-primary-fixed": "#161f00",
+                        "secondary-fixed": "#ffd7f5",
+                        "on-secondary-container": "#500050",
+                        "inverse-surface": "#313030",
+                        "surface-container": "#f1edec",
+                        "surface-variant": "#e6e1e1",
+                        "primary": "#506600",
+                        "on-secondary-fixed": "#380038",
+                        "primary-fixed": "#c3f400",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "surface": "#fdf8f8",
+                        "surface-container-low": "#f7f2f2",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#14fbfb",
+                        "surface-tint": "#506600",
+                        "surface-container-high": "#ece7e7",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "primary-container": "#c3f400",
+                        "on-tertiary-container": "#007070",
+                        "inverse-on-surface": "#f4f0ef",
+                        "surface-container-highest": "#e6e1e1",
+                        "inverse-primary": "#abd600",
+                        "outline-variant": "#c4c9ad",
+                        "secondary": "#a900a9",
+                        "on-secondary-fixed-variant": "#810081",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#00dddd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "40px",
+                        "unit": "8px",
+                        "border-width": "4px",
+                        "gutter": "24px",
+                        "container-max-width": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "body-sm": ["Montserrat"],
+                        "table-header": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-sm": ["Syne"],
+                        "display-lg": ["Syne"],
+                        "headline-lg": ["Syne"],
+                        "headline-md": ["Syne"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "table-header": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neubrutalism-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(28,27,27,1);
+        }
+        .neubrutalism-shadow-sm {
+            box-shadow: 4px 4px 0px 0px rgba(28,27,27,1);
+        }
+        .hover-press:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0px 0px rgba(28,27,27,1);
+        }
+        .hover-press:active {
+            transform: translate(8px, 8px);
+            box-shadow: 0px 0px 0px 0px rgba(28,27,27,1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full overflow-y-auto bg-surface dark:bg-on-background border-r-4 border-on-background w-64 flex-shrink-0 z-50">
+<div class="p-margin border-b-4 border-on-background"></div>
+<div class="flex-1 py-4">
+<a class="flex items-center px-margin py-3 text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 group" href="#">
+<span class="material-symbols-outlined mr-3 text-xl group-hover:text-on-primary">dashboard</span>
+<span class="font-body-md text-body-md">Panel</span>
+</a>
+<a class="flex items-center px-margin py-3 text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 group" href="#">
+<span class="material-symbols-outlined mr-3 text-xl group-hover:text-on-primary">menu_book</span>
+<span class="font-body-md text-body-md">Libros</span>
+</a>
+<a class="flex items-center px-margin py-3 text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 group" href="#">
+<span class="material-symbols-outlined mr-3 text-xl group-hover:text-on-primary">group</span>
+<span class="font-body-md text-body-md">Usuarios</span>
+</a>
+<a class="flex items-center px-margin py-3 bg-on-background text-white dark:bg-white dark:text-on-background font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-xl">handshake</span>
+<span class="font-body-md text-body-md">Préstamos</span>
+</a>
+</div>
+<div class="p-margin border-t-4 border-on-background">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-label-bold text-label-bold uppercase py-3 border-4 border-on-background neubrutalism-shadow hover-press transition-all">NUEVO PRÉSTAMO</button>
+</div>
+<div class="py-4 border-t-4 border-on-background">
+<a class="flex items-center px-margin py-3 text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 group" href="#">
+<span class="material-symbols-outlined mr-3 text-xl group-hover:text-on-primary">settings</span>
+<span class="font-body-md text-body-md">Configuración</span>
+</a>
+<a class="flex items-center px-margin py-3 text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 group" href="#">
+<span class="material-symbols-outlined mr-3 text-xl group-hover:text-on-primary">logout</span>
+<span class="font-body-md text-body-md">Cerrar Sesión</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-margin py-4 sticky top-0 z-40 bg-surface dark:bg-on-background full-width border-b-4 border-on-background shadow-[0px_8px_0px_0px_rgba(28,27,27,1)] flex-shrink-0">
+<div class="flex items-center md:hidden">
+<span class="font-headline-lg text-headline-lg font-black text-on-background dark:text-on-primary-fixed">BiblioTech</span>
+</div>
+<div class="hidden md:flex items-center flex-1 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-4 border-on-background text-on-background placeholder-on-surface-variant focus:outline-none focus:bg-primary-fixed focus:border-on-background font-body-md text-body-md neubrutalism-shadow-sm transition-all" placeholder="Buscar..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4"><button class="p-2 text-on-background hover:bg-secondary-container hover:text-on-secondary-container active:translate-y-1 transition-all border-4 border-transparent hover:border-on-background rounded-none"><span class="material-symbols-outlined text-2xl">notifications</span></button><button class="p-2 text-on-background hover:bg-secondary-container hover:text-on-secondary-container active:translate-y-1 transition-all border-4 border-transparent hover:border-on-background rounded-none"><span class="material-symbols-outlined text-2xl">help</span></button><div class="flex items-center gap-3 pl-2 border-l-4 border-on-background ml-2"><div class="flex flex-col items-end hidden sm:flex"><span class="font-label-bold text-label-bold text-on-background">Admin UNSCH</span><span class="text-[10px] font-bold uppercase text-on-surface-variant">Bibliotecario</span></div><div class="relative group"><button class="flex items-center gap-2 bg-primary-container border-4 border-on-background p-1 neubrutalism-shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] transition-all"><div class="w-10 h-10 bg-white border-2 border-on-background flex items-center justify-center overflow-hidden"><span class="material-symbols-outlined text-on-surface text-3xl">person</span></div><span class="material-symbols-outlined">expand_more</span></button></div></div></div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-margin">
+<div class="max-w-[1440px] mx-auto h-full flex flex-col lg:flex-row gap-gutter">
+<!-- Left Column: Registrar Nuevo Préstamo (40%) -->
+<section class="w-full lg:w-2/5 flex flex-col gap-6">
+<h2 class="font-headline-md text-headline-md text-on-background border-b-4 border-on-background pb-2 inline-block self-start">Registrar Nuevo Préstamo</h2>
+<form class="flex flex-col gap-6 bg-surface p-6 border-4 border-on-background neubrutalism-shadow">
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-background uppercase" for="dni">DNI Estudiante</label>
+<input class="w-full p-4 bg-white border-4 border-on-background font-body-md text-body-md text-on-background focus:outline-none focus:bg-primary-fixed-dim focus:border-on-background transition-colors placeholder-on-surface-variant" id="dni" name="dni" placeholder="Ej. 12345678" type="text">
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-background uppercase" for="isbn">ISBN Libro</label>
+<input class="w-full p-4 bg-white border-4 border-on-background font-body-md text-body-md text-on-background focus:outline-none focus:bg-primary-fixed-dim focus:border-on-background transition-colors placeholder-on-surface-variant" id="isbn" name="isbn" placeholder="Ej. 978-3-16-148410-0" type="text">
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-background uppercase" for="datetime">Fecha y Hora Límite de Devolución</label>
+<input class="w-full p-4 bg-white border-4 border-on-background font-body-md text-body-md text-on-background focus:outline-none focus:bg-primary-fixed-dim focus:border-on-background transition-colors" id="datetime" name="datetime" type="datetime-local">
+</div>
+<button class="mt-4 w-full bg-primary-fixed text-on-primary-fixed font-headline-sm text-headline-sm uppercase py-4 border-4 border-on-background neubrutalism-shadow hover-press transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined font-bold text-3xl">task_alt</span>
+                            CONFIRMAR SALIDA
+                        </button>
+</form>
+</section>
+<!-- Right Column: Préstamos Pendientes (60%) -->
+<section class="w-full lg:w-3/5 flex flex-col gap-6">
+<h2 class="font-headline-md text-headline-md text-on-background border-b-4 border-on-background pb-2 inline-block self-start">Préstamos Pendientes de Devolución</h2>
+<div class="flex flex-col gap-4 overflow-y-auto pr-2 pb-8">
+<!-- Card 1 -->
+<div class="bg-surface border-4 border-on-background p-6 neubrutalism-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-transform hover:-translate-y-1">
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Juan Pérez Gómez</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-base">menu_book</span>
+                                    Cien Años de Soledad (Ed. Especial)
+                                </p>
+<div class="mt-2 inline-flex items-center gap-2 bg-surface-container-high border-2 border-on-background px-3 py-1 self-start">
+<span class="material-symbols-outlined text-error text-sm">schedule</span>
+<span class="font-label-bold text-label-bold text-error uppercase">Tiempo Restante: 2 Horas</span>
+</div>
+</div>
+<button class="w-full md:w-auto bg-secondary-container text-on-secondary-container font-label-bold text-label-bold uppercase py-3 px-6 border-4 border-on-background neubrutalism-shadow-sm hover-press transition-all whitespace-nowrap">
+                                REGISTRAR ENTRADA
+                            </button>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface border-4 border-on-background p-6 neubrutalism-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-transform hover:-translate-y-1">
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-background">María Rodríguez López</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-base">menu_book</span>
+                                    Fundamentos de Bases de Datos
+                                </p>
+<div class="mt-2 inline-flex items-center gap-2 bg-surface-container-high border-2 border-on-background px-3 py-1 self-start">
+<span class="material-symbols-outlined text-on-background text-sm">schedule</span>
+<span class="font-label-bold text-label-bold text-on-background uppercase">Tiempo Restante: 1 Día</span>
+</div>
+</div>
+<button class="w-full md:w-auto bg-secondary-container text-on-secondary-container font-label-bold text-label-bold uppercase py-3 px-6 border-4 border-on-background neubrutalism-shadow-sm hover-press transition-all whitespace-nowrap">
+                                REGISTRAR ENTRADA
+                            </button>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface border-4 border-on-background p-6 neubrutalism-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-transform hover:-translate-y-1">
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Carlos Sánchez Ruiz</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-base">menu_book</span>
+                                    Estructuras de Datos y Algoritmos
+                                </p>
+<div class="mt-2 inline-flex items-center gap-2 bg-error text-on-error border-2 border-on-background px-3 py-1 self-start">
+<span class="material-symbols-outlined text-on-error text-sm">warning</span>
+<span class="font-label-bold text-label-bold uppercase">VENCIDO: HACE 1 DÍA</span>
+</div>
+</div>
+<button class="w-full md:w-auto bg-secondary-container text-on-secondary-container font-label-bold text-label-bold uppercase py-3 px-6 border-4 border-on-background neubrutalism-shadow-sm hover-press transition-all whitespace-nowrap">
+                                REGISTRAR ENTRADA
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+
+</body></html>

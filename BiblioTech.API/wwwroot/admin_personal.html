@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Gestión de Personal - BiblioTech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f1edec",
+                        "secondary": "#a900a9",
+                        "on-secondary-fixed-variant": "#810081",
+                        "inverse-primary": "#abd600",
+                        "primary": "#506600",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f7f2f2",
+                        "surface": "#fdf8f8",
+                        "on-primary-container": "#556d00",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "tertiary": "#006a6a",
+                        "inverse-surface": "#313030",
+                        "on-surface": "#1c1b1b",
+                        "outline": "#747a61",
+                        "background": "#fdf8f8",
+                        "tertiary-fixed-dim": "#00dddd",
+                        "surface-variant": "#e6e1e1",
+                        "surface-dim": "#ddd9d8",
+                        "on-background": "#1c1b1b",
+                        "primary-fixed": "#c3f400",
+                        "on-tertiary-fixed": "#002020",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f4f0ef",
+                        "primary-fixed-dim": "#abd600",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "surface-container-high": "#ece7e7",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "surface-container-highest": "#e6e1e1",
+                        "surface-bright": "#fdf8f8",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#444933",
+                        "on-primary-fixed": "#161f00",
+                        "surface-tint": "#506600",
+                        "primary-container": "#c3f400",
+                        "outline-variant": "#c4c9ad",
+                        "on-tertiary-container": "#007070",
+                        "on-secondary-fixed": "#380038",
+                        "secondary-fixed": "#ffd7f5",
+                        "on-secondary-container": "#500050",
+                        "tertiary-fixed": "#15fbfb",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fe00fe",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#14fbfb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max-width": "1440px",
+                        "unit": "8px",
+                        "margin": "40px",
+                        "border-width": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Syne"],
+                        "headline-sm": ["Syne"],
+                        "headline-md": ["Syne"],
+                        "body-lg": ["Montserrat"],
+                        "display-lg": ["Syne"],
+                        "body-sm": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "table-header": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "table-header": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neubrutalist-shadow { box-shadow: 8px 8px 0px 0px rgba(28,27,27,1); }
+        .neubrutalist-shadow-hover:hover { box-shadow: 4px 4px 0px 0px rgba(28,27,27,1); transform: translate(4px, 4px); }
+        .neubrutalist-shadow-active:active { box-shadow: 0px 0px 0px 0px rgba(28,27,27,1); transform: translate(8px, 8px); }
+    </style>
+</head>
+<body class="bg-surface text-on-background font-body-md h-screen flex overflow-hidden selection:bg-primary-fixed selection:text-on-background">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-on-background h-screen w-64 border-r-4 border-on-background dark:border-white shadow-[8px_0px_0px_0px_rgba(28,27,27,1)] flex flex-col h-full overflow-y-auto shrink-0 relative z-20">
+<div class="p-6 border-b-4 border-on-background bg-secondary-fixed">
+<h1 class="font-display-lg text-display-lg uppercase text-on-background dark:text-on-primary-fixed leading-none tracking-tighter"><h1 class="font-headline-md text-headline-md font-black uppercase text-on-background cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(28, 27, 27); letter-spacing: normal; background-color: rgb(253, 248, 248); outline: none !important; box-shadow: none !important;">Biblio<div spellcheck="false" class="cursor-text" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;">Tech</div></h1></h1>
+<p class="font-label-bold text-label-bold mt-2 uppercase text-on-surface-variant">UNSCH Admin</p>
+</div>
+<div class="flex-grow flex flex-col pt-6 gap-2 px-4">
+<a href="admin_dashboard.html" class="flex items-center gap-4 px-4 py-3 border-4 border-transparent text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 font-label-bold text-label-bold uppercase">
+<span class="material-symbols-outlined">dashboard</span>
+                Panel Global
+            </a>
+<a href="admin_personal.html" class="flex items-center gap-4 px-4 py-3 border-4 border-on-background bg-primary-fixed text-on-background font-bold shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-label-bold text-label-bold uppercase">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+                Gestión de Personal
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 border-4 border-transparent text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 font-label-bold text-label-bold uppercase" >
+<span class="material-symbols-outlined">fact_check</span>
+                Auditoría
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 border-4 border-transparent text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 font-label-bold text-label-bold uppercase" >
+<span class="material-symbols-outlined">bar_chart</span>
+                Reportes
+            </a>
+</div>
+<div class="mt-auto p-4 border-t-4 border-on-background bg-surface-variant flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 border-4 border-transparent text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 font-label-bold text-label-bold uppercase" >
+<span class="material-symbols-outlined">settings</span>
+                Configuración
+            </a>
+<a id="btn-logout" href="#" class="flex items-center gap-4 px-4 py-3 border-4 border-transparent text-on-background dark:text-surface-variant hover:bg-primary dark:hover:bg-primary-fixed hover:text-on-primary transition-all duration-200 hover:translate-x-1 active:translate-x-0 font-label-bold text-label-bold uppercase">
+<span class="material-symbols-outlined">logout</span>
+                Salir
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden relative z-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmRmOGY4IiAvPgo8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMSIgZmlsbD0iI2QxY2FjYSIgLz4KPC9zdmc+')]">
+<!-- Top Header -->
+<header class="bg-surface border-b-4 border-on-background px-margin py-4 flex justify-between items-center shadow-[0px_8px_0px_0px_rgba(28,27,27,1)] relative z-30 shrink-0">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-background uppercase bg-secondary-fixed inline-block px-2 border-2 border-on-background">Modo Administrador - Biblioteca Central</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-2">
+<button class="w-12 h-12 border-4 border-on-background bg-surface hover:bg-primary-fixed flex items-center justify-center transition-colors neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-12 h-12 border-4 border-on-background bg-surface hover:bg-primary-fixed flex items-center justify-center transition-colors neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="flex items-center gap-3 border-l-4 border-on-background pl-6">
+<div class="text-right">
+<p class="font-label-bold text-label-bold uppercase text-on-background">Admin UNSCH</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-bold">Administrador del Sistema</p>
+</div>
+<div class="w-14 h-14 border-4 border-on-background bg-tertiary-fixed overflow-hidden neubrutalist-shadow">
+<img alt="Foto de Perfil del Administrador" class="w-full h-full object-cover grayscale contrast-125" data-alt="A striking portrait of a library administrator in a minimalist setting. The subject is well-lit with high-contrast lighting, emphasizing authority and professionalism. The image is rendered in black and white with increased contrast to match a neubrutalist design aesthetic, featuring stark shadows and crisp details. The overall mood is serious, competent, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtBc5x9QqKskihlb3ZBtGGDkFZuSh--syn9J4GUGDBnxDxR1X3JffxKeCi-RCp6WFW5JFdNJeS_Rs1s0EBtjx7lVfmMrb6_zUFMaL8BGy6C-zSjwLPUkYjFJSgKzuWzxEJPes93qziAsVPbXDjz2LZY_b1JQAHZAnO1XM52rKvUP1eRCDvS_0SoteoIfAUzjpjwpy5Hkh_is1BzWbrO9Fxt3jkI0GtWTBFjE2v31v1zxCPTl07cmLsDUU_-61ENrJiZuDYCXwgL-Q">
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="flex-1 overflow-y-auto p-margin flex gap-8">
+<!-- Left Column: Table -->
+<div class="flex-1 flex flex-col gap-6">
+<div class="flex justify-between items-end border-b-4 border-on-background pb-4">
+<h2 class="font-headline-md text-headline-md text-on-background uppercase tracking-tight">Gestión de Empleados<br>y Bibliotecarios</h2>
+<button class="bg-tertiary-fixed border-4 border-on-background px-6 py-4 flex items-center gap-2 font-label-bold text-label-bold uppercase neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all">
+<span class="material-symbols-outlined font-bold">add</span>
+                        Nuevo Empleado
+                    </button>
+</div>
+<!-- Data Table -->
+<div class="bg-surface border-4 border-on-background neubrutalist-shadow flex flex-col">
+<!-- Table Header -->
+<div class="grid grid-cols-[100px_minmax(200px,1fr)_minmax(200px,1fr)_120px_180px_100px_80px] bg-primary-fixed border-b-4 border-on-background">
+<div class="p-4 font-table-header text-table-header text-on-background uppercase border-r-4 border-on-background flex items-center">DNI</div>
+<div class="p-4 font-table-header text-table-header text-on-background uppercase border-r-4 border-on-background flex items-center">Nombres Completos</div>
+<div class="p-4 font-table-header text-table-header text-on-background uppercase border-r-4 border-on-background flex items-center">Correo Institucional</div>
+<div class="p-4 font-table-header text-table-header text-on-background uppercase border-r-4 border-on-background flex items-center">Rol</div>
+<div class="p-4 font-table-header text-table-header text-on-background uppercase border-r-4 border-on-background flex items-center">Área Asignada</div>
+<div class="p-4 font-table-header text-table-header text-on-background uppercase border-r-4 border-on-background flex items-center">Estado</div>
+<div class="p-4 font-table-header text-table-header text-on-background uppercase flex items-center justify-center">Acción</div>
+</div>
+<!-- Table Rows -->
+<div id="table-personal" class="flex flex-col bg-surface">
+<!-- Row 1 -->
+<div class="grid grid-cols-[100px_minmax(200px,1fr)_minmax(200px,1fr)_120px_180px_100px_80px] border-b-4 border-on-background hover:bg-surface-variant transition-colors group cursor-pointer">
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center font-bold">72849102</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center uppercase">García Pérez, Carlos</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center">cgarcia@unsch.edu.pe</div>
+<div class="p-4 border-r-4 border-on-background flex items-center">
+<span class="bg-secondary-fixed border-2 border-on-background px-2 py-1 font-label-bold text-label-bold text-[10px] uppercase w-full text-center">Admin</span>
+</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center">Dirección General</div>
+<div class="p-4 border-r-4 border-on-background flex items-center">
+<div class="w-4 h-4 rounded-full border-2 border-on-background bg-primary-fixed"></div>
+<span class="ml-2 font-label-bold text-label-bold text-xs uppercase">Activo</span>
+</div>
+<div class="p-4 flex items-center justify-center">
+<button class="w-8 h-8 border-2 border-on-background bg-surface hover:bg-secondary-container flex items-center justify-center transition-colors group-hover:scale-110">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[100px_minmax(200px,1fr)_minmax(200px,1fr)_120px_180px_100px_80px] border-b-4 border-on-background hover:bg-surface-variant transition-colors group cursor-pointer">
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center font-bold">45910283</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center uppercase">Mendoza, Ana Lucía</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center">amendoza@unsch.edu.pe</div>
+<div class="p-4 border-r-4 border-on-background flex items-center">
+<span class="bg-surface border-2 border-on-background px-2 py-1 font-label-bold text-label-bold text-[10px] uppercase w-full text-center">Personal</span>
+</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center">Piso 1 - Ciencias</div>
+<div class="p-4 border-r-4 border-on-background flex items-center">
+<div class="w-4 h-4 rounded-full border-2 border-on-background bg-primary-fixed"></div>
+<span class="ml-2 font-label-bold text-label-bold text-xs uppercase">Activo</span>
+</div>
+<div class="p-4 flex items-center justify-center">
+<button class="w-8 h-8 border-2 border-on-background bg-surface hover:bg-secondary-container flex items-center justify-center transition-colors group-hover:scale-110">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-[100px_minmax(200px,1fr)_minmax(200px,1fr)_120px_180px_100px_80px] hover:bg-surface-variant transition-colors group cursor-pointer bg-surface-container-high opacity-80">
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center font-bold line-through">09182736</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center uppercase">Salas Quispe, Roberto</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center">rsalas@unsch.edu.pe</div>
+<div class="p-4 border-r-4 border-on-background flex items-center">
+<span class="bg-surface border-2 border-on-background px-2 py-1 font-label-bold text-label-bold text-[10px] uppercase w-full text-center">Personal</span>
+</div>
+<div class="p-4 font-body-md text-body-md border-r-4 border-on-background flex items-center">Hemeroteca</div>
+<div class="p-4 border-r-4 border-on-background flex items-center">
+<div class="w-4 h-4 rounded-full border-2 border-on-background bg-surface-variant"></div>
+<span class="ml-2 font-label-bold text-label-bold text-xs uppercase text-on-surface-variant">Inactivo</span>
+</div>
+<div class="p-4 flex items-center justify-center">
+<button class="w-8 h-8 border-2 border-on-background bg-surface hover:bg-secondary-container flex items-center justify-center transition-colors group-hover:scale-110">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Quick Registration Form -->
+<div class="w-96 shrink-0 flex flex-col h-full sticky top-0">
+<div class="bg-surface border-4 border-on-background neubrutalist-shadow p-6 flex flex-col gap-6 relative overflow-hidden" style="max-height: 75vh; overflow-y: auto; overflow-x: hidden;">
+<!-- Decorative Element -->
+<div class="absolute -right-8 -top-8 w-24 h-24 bg-secondary-container border-4 border-on-background transform rotate-12 z-0"></div>
+<div class="relative z-10 border-b-4 border-on-background pb-4">
+<h3 class="font-headline-sm text-headline-sm uppercase flex items-center gap-2">
+<span class="material-symbols-outlined font-bold text-secondary-container">person_add</span>
+                            Registro Rápido
+                        </h3>
+</div>
+<form id="form-nuevo-personal" class="flex flex-col gap-5 relative z-10">
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase tracking-wider">Documento de Identidad (DNI)</label>
+<input id="input-dni" class="w-full bg-white border-4 border-on-background p-3 font-body-md text-body-md focus:outline-none focus:bg-primary-fixed focus:translate-x-1 focus:-translate-y-1 transition-transform placeholder-surface-dim" placeholder="Ej. 72849102" type="text" required>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase tracking-wider">Nombres y Apellidos</label>
+<input id="input-nombres" class="w-full bg-white border-4 border-on-background p-3 font-body-md text-body-md focus:outline-none focus:bg-primary-fixed focus:translate-x-1 focus:-translate-y-1 transition-transform placeholder-surface-dim" placeholder="Apellidos, Nombres" type="text" required>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase tracking-wider">Correo Institucional</label>
+<input id="input-correo" class="w-full bg-white border-4 border-on-background p-3 font-body-md text-body-md focus:outline-none focus:bg-primary-fixed focus:translate-x-1 focus:-translate-y-1 transition-transform placeholder-surface-dim" placeholder="usuario@unsch.edu.pe" type="email" required>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase tracking-wider">Contraseña</label>
+<input id="input-password" class="w-full bg-white border-4 border-on-background p-3 font-body-md text-body-md focus:outline-none focus:bg-primary-fixed focus:translate-x-1 focus:-translate-y-1 transition-transform placeholder-surface-dim" placeholder="••••••••" type="password" required>
+</div>
+<div class="flex gap-4">
+<div class="flex-1 flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase tracking-wider">Rol Asignado</label>
+<div class="relative">
+<select id="input-rol" class="w-full bg-white border-4 border-on-background p-3 font-body-md text-body-md appearance-none focus:outline-none focus:bg-primary-fixed cursor-pointer rounded-none"><option value="2">Personal Base</option><option value="1">Administrador</option>
+
+
+
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 border-l-4 border-on-background bg-surface">
+<span class="material-symbols-outlined font-bold">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase tracking-wider">Piso / Área Designada</label>
+<div class="relative">
+<select id="input-piso" class="w-full bg-white border-4 border-on-background p-3 font-body-md text-body-md appearance-none focus:outline-none focus:bg-secondary-fixed cursor-pointer rounded-none">
+<option>Piso 1 - Ciencias Biológicas</option>
+<option>Piso 2 - Humanidades</option>
+<option>Piso 3 - Tesis y Archivos</option>
+<option>Hemeroteca Central</option>
+<option>Área Administrativa</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 border-l-4 border-on-background bg-secondary-fixed">
+<span class="material-symbols-outlined font-bold">business</span>
+</div>
+</div>
+</div>
+<button id="btn-registrar" class="mt-4 bg-tertiary-fixed border-4 border-on-background py-5 font-headline-sm text-headline-sm uppercase neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all group flex justify-center items-center gap-2" type="submit">
+                            Registrar
+                            <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform font-bold">arrow_forward</span>
+</button>
+<div id="form-error" class="hidden text-error font-bold mt-2"></div>
+</form>
+</div>
+</div>
+</main>
+</div>
+<script src="js/gestion_personal.js"></script>
+</body></html>

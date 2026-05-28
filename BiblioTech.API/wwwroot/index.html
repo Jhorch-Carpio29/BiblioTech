@@ -1,0 +1,208 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BiblioTech - Login</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#556d00",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f4f0ef",
+                        "background": "#fdf8f8",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-primary-fixed": "#161f00",
+                        "on-tertiary-fixed": "#002020",
+                        "secondary": "#a900a9",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "tertiary": "#006a6a",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#15fbfb",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#380038",
+                        "inverse-surface": "#313030",
+                        "on-secondary-container": "#500050",
+                        "tertiary-container": "#14fbfb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#abd600",
+                        "surface-dim": "#ddd9d8",
+                        "primary-fixed": "#c3f400",
+                        "surface-container": "#f1edec",
+                        "secondary-container": "#fe00fe",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e6e1e1",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#506600",
+                        "surface-container-high": "#ece7e7",
+                        "surface-bright": "#fdf8f8",
+                        "on-secondary-fixed-variant": "#810081",
+                        "outline": "#747a61",
+                        "surface": "#fdf8f8",
+                        "surface-container-highest": "#e6e1e1",
+                        "primary-container": "#c3f400",
+                        "on-surface": "#1c1b1b",
+                        "inverse-primary": "#abd600",
+                        "secondary-fixed": "#ffd7f5",
+                        "primary": "#506600",
+                        "outline-variant": "#c4c9ad",
+                        "surface-container-low": "#f7f2f2",
+                        "on-tertiary-container": "#007070",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "tertiary-fixed-dim": "#00dddd",
+                        "on-background": "#1c1b1b",
+                        "on-surface-variant": "#444933",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "border-width": "4px",
+                        "container-max-width": "1440px",
+                        "gutter": "24px",
+                        "margin": "40px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Syne"],
+                        "body-lg": ["Montserrat"],
+                        "headline-sm": ["Syne"],
+                        "table-header": ["Montserrat"],
+                        "headline-md": ["Syne"],
+                        "headline-lg": ["Syne"],
+                        "body-md": ["Montserrat"],
+                        "body-sm": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "table-header": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Left Half: Visual Pattern -->
+<div class="hidden lg:block w-1/2 h-full bg-surface-container relative border-r-border-width border-on-surface">
+<!-- Using an image placeholder with a detailed prompt for a geometric/neubrutalist pattern -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A striking digital art pattern featuring aggressive, hard-edged geometric shapes and overlapping grids in vivid neon lime, electric cyan, and stark magenta against a textured off-white background. The composition is highly structured, rejecting soft gradients in favor of sharp contrasts and physical drop shadows. The aesthetic is strictly neubrutalist, evoking a sense of raw digital energy and modern structural design typical of high-end tech interfaces. Lighting is flat and uniform to emphasize the graphic elements." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGPKMZyqQVOTVVjxd9lVpfpDGnAmVb6C53dpD_R8wgMthvG6QfkZ0oPZ79yhF-uTFZosmw57XoSoOCgUgO4Lx-rZpJD79u4Ooi9OFhCrlBR3BvuFA2mqXiNf8QMEXeQMlTWfgNtcTSHKkCQv43DYV_lLlY_IHVmgSA2e_4wVIAQ5QWs3bkSQXYITJ0MG4WiH98PZIBO1BZP3WQ_tLjTHGz7GXaJi_jwOHVfne5WMMcaEYGWTTpZdworpYPiEnSVJ9Unxs2fpR46fg');"></div>
+<!-- Optional overlay to ensure contrast if needed, but keeping it raw for neubrutalism -->
+<div class="absolute inset-0 bg-surface-container/20 mix-blend-multiply pointer-events-none"></div>
+</div>
+<!-- Right Half: Login Form -->
+<div class="w-full lg:w-1/2 h-full flex items-center justify-center p-margin bg-background relative overflow-y-auto">
+<!-- Decorative background elements (optional, to tie in the theme) -->
+<div class="absolute top-10 right-10 w-24 h-24 bg-tertiary-container border-border-width border-on-surface shadow-[8px_8px_0px_0px_#1C1B1B] -z-10 animate-pulse" style="animation-duration: 4s;"></div>
+<div class="absolute bottom-20 left-10 w-16 h-16 bg-secondary-container border-border-width border-on-surface shadow-[8px_8px_0px_0px_#1C1B1B] -z-10"></div>
+<!-- Login Card -->
+<div class="w-full max-w-[500px] bg-surface border-border-width border-on-surface shadow-[12px_12px_0px_0px_#1C1B1B] p-10 flex flex-col gap-8 transition-transform duration-300">
+<!-- Header -->
+<div class="flex flex-col gap-2">
+<h1 class="font-display-lg text-display-lg text-on-surface uppercase break-words leading-none">
+                        Biblio<div>Tech
+                    </div></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant uppercase tracking-widest border-t-border-width border-on-surface pt-2 mt-2">
+                        Sistema de Gestión de Biblioteca UNSCH
+                    </p>
+</div>
+<!-- Form -->
+<form id="loginForm" class="flex flex-col gap-6 w-full mt-4" method="POST">
+<!-- Error message --><div id="error-message" class="hidden text-error mt-2 font-semibold"></div>
+<!-- Email Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface uppercase" for="email">
+                            Correo Institucional
+                        </label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface z-10">
+                                mail
+                            </span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface border-border-width border-on-surface text-on-surface font-body-md focus:outline-none focus:ring-0 focus:bg-primary-container focus:border-on-surface transition-colors rounded-none placeholder:text-on-surface-variant/50" id="email" name="email" placeholder="usuario@unsch.edu.pe" required="" type="email">
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface uppercase flex justify-between" for="password">
+                            Contraseña
+                            <a class="text-on-surface-variant hover:text-on-surface hover:underline normal-case" href="#">¿Olvidaste?</a>
+</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface z-10">
+                                lock
+                            </span>
+<input class="w-full h-14 pl-12 pr-12 bg-surface border-border-width border-on-surface text-on-surface font-body-md focus:outline-none focus:ring-0 focus:bg-primary-container focus:border-on-surface transition-colors rounded-none placeholder:text-on-surface-variant/50" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface hover:text-on-surface-variant transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="visibility-icon">
+                                    visibility
+                                </span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-4">
+<button class="w-full h-16 bg-primary-container text-on-primary-container font-label-bold text-label-bold text-lg uppercase border-border-width border-on-surface shadow-[8px_8px_0px_0px_#1C1B1B] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_#1C1B1B] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all duration-150 flex items-center justify-center gap-2" type="submit">
+                            Ingresar al Sistema
+                            <span class="material-symbols-outlined" data-weight="fill">
+                                arrow_forward
+                            </span>
+</button>
+</div>
+</form>
+<!-- Footer (Optional minimal branding) -->
+<div class="mt-8 pt-4 border-t-2 border-on-surface border-dashed text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        © 2024 Universidad Nacional de San Cristóbal de Huamanga
+                    </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const visibilityIcon = document.getElementById('visibility-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                visibilityIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                visibilityIcon.textContent = 'visibility';
+            }
+        }
+    </script>
+
+
+    <script src="js/login.js"></script>
+</body></html>

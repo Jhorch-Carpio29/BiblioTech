@@ -1,0 +1,281 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Estudiantes - BiblioTech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#313030",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c4c9ad",
+                        "on-secondary-fixed-variant": "#810081",
+                        "on-primary-container": "#556d00",
+                        "on-primary": "#ffffff",
+                        "background": "#fdf8f8",
+                        "surface-bright": "#fdf8f8",
+                        "surface-variant": "#e6e1e1",
+                        "on-surface": "#1c1b1b",
+                        "on-secondary-fixed": "#380038",
+                        "tertiary-fixed-dim": "#00dddd",
+                        "surface-container-high": "#ece7e7",
+                        "inverse-primary": "#abd600",
+                        "tertiary": "#006a6a",
+                        "surface-container-highest": "#e6e1e1",
+                        "surface-tint": "#506600",
+                        "primary-fixed": "#c3f400",
+                        "on-surface-variant": "#444933",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f4f0ef",
+                        "primary-container": "#c3f400",
+                        "surface": "#fdf8f8",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#007070",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd9d8",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1c1b1b",
+                        "primary-fixed-dim": "#abd600",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#500050",
+                        "surface-container": "#f1edec",
+                        "primary": "#506600",
+                        "on-primary-fixed": "#161f00",
+                        "error-container": "#ffdad6",
+                        "secondary": "#a900a9",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "surface-container-low": "#f7f2f2",
+                        "tertiary-fixed": "#15fbfb",
+                        "secondary-fixed": "#ffd7f5",
+                        "secondary-container": "#fe00fe",
+                        "tertiary-container": "#14fbfb",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "outline": "#747a61"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "border-width": "4px",
+                        "gutter": "24px",
+                        "container-max-width": "1440px",
+                        "margin": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Syne"],
+                        "body-lg": ["Montserrat"],
+                        "headline-lg": ["Syne"],
+                        "body-sm": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "table-header": ["Montserrat"],
+                        "headline-sm": ["Syne"],
+                        "display-lg": ["Syne"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "table-header": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fdf8f8;
+            color: #1c1b1b;
+        }
+        .neubrutalist-shadow {
+            box-shadow: 8px 8px 0px 0px #1c1b1b;
+        }
+        .neubrutalist-shadow-sm {
+            box-shadow: 4px 4px 0px 0px #1c1b1b;
+        }
+        .neubrutalist-border {
+            border: 4px solid #1c1b1b;
+        }
+        .neubrutalist-hover:hover {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-50 w-64 border-r-border-width border-on-surface bg-surface border-r-4">
+<div class="p-6 border-b-border-width border-on-surface"><div class="flex items-center gap-gutter mb-6">
+<img alt="UNSCH Logo" class="w-12 h-12 border-border-width border-on-surface shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeanLrQlqnhlJCorJg8qDa3WOmmcagZyg5A3VYUCNN3-8Cw070cLC_oV_Jt5RUVWaOvE6ogzBuMZRQgFGQ3Z2_q8b_5KRf0oLywLIkCmo9imBU9C3AfX0zrUDSigx4TOD3eo9ZOlw0ByRTGqRcK0fgtwGnH_xV8j392YsnB55cAcI1HCqMbYs7bvSKNpCLWAZFxzXWj73zgJJ6bmdNxSihTxxRKCQUGHkn7hYDevcxl8wccbItWMUcqMg6_aDJ6XS7eIbcQieZ-Lc">
+<div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-headline-sm">library_books</span><h1 class="text-xl font-black uppercase text-on-surface">BiblioTech</h1></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-bold mt-1">UNSCH Library Personal</p>
+</div>
+</div></div>
+<nav class="flex-1 overflow-y-auto py-4">
+<a class="text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Panel</span>
+</a>
+<a class="text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors" href="inventario.html">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-bold text-label-bold">Libros</span>
+</a>
+<a class="bg-on-surface text-on-secondary font-label-bold text-label-bold p-4 flex items-center gap-3" href="estudiantes.html">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-bold text-label-bold">Usuarios</span>
+</a>
+<a class="text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors" href="prestamos.html">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-label-bold text-label-bold">Préstamos</span>
+</a>
+</nav>
+<div class="p-4 border-t-border-width border-on-surface">
+<a href="prestamos.html" class="w-full bg-primary-fixed neubrutalist-border neubrutalist-shadow-sm p-3 font-label-bold text-label-bold uppercase flex justify-center items-center gap-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"><span class="material-symbols-outlined">add</span>Nuevo Préstamo</a>
+</div>
+<div class="p-4">
+<a id="btn-logout" class="text-on-surface-variant hover:bg-on-surface hover:text-on-secondary p-4 flex items-center gap-3 transition-all rounded" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-bold text-label-bold">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col">
+<!-- TopNavBar (Simulated for layout consistency, though hidden by default on desktop in this context, keeping it minimal as requested) -->
+<header class="bg-surface border-b-border-width border-on-surface px-margin py-6 flex justify-between items-center sticky top-0 z-40 shadow-[0px_4px_0px_0px_rgba(28,27,27,1)]"><div class="relative w-1/3 min-w-[300px]">
+<input class="w-full bg-surface-container-lowest border-border-width border-on-surface p-4 pl-12 font-body-md text-body-md focus:outline-none focus:bg-primary-container focus:ring-0 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] placeholder:text-on-surface-variant transition-colors" placeholder="Buscar por DNI o Código..." type="text">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface font-bold">search</span>
+</div>
+<div class="flex items-center gap-gutter">
+<button class="bg-surface-container-lowest border-border-width border-on-surface p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-4 bg-surface-container border-border-width border-on-surface p-2 pr-6 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]">
+<img id="header-profile-img" alt="Librarian Profile" class="w-10 h-10 border-2 border-on-surface" src="">
+<div class="text-right">
+<p id="header-user-name" class="font-label-bold text-label-bold text-on-surface">...</p>
+<p id="header-user-role" class="font-table-header text-table-header text-on-surface-variant">...</p>
+</div>
+</div>
+</div></header>
+<!-- Main Content Canvas -->
+<main class="p-margin flex-1 overflow-y-auto">
+<div class="max-w-container-max-width mx-auto">
+<header class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Padrón de Estudiantes UNSCH</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Gestión y control de usuarios de la biblioteca.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-full md:w-auto flex-1 max-w-md">
+<div class="relative">
+                <input id="input-buscador" class="w-full pl-12 pr-4 py-4 bg-white neubrutalist-border neubrutalist-shadow-sm font-body-md text-body-md focus:outline-none focus:bg-primary-fixed-dim/10 transition-colors" placeholder="Buscar por DNI o Código..." type="text">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface">search</span>
+</div>
+</div>
+<button id="btn-abrir-modal" class="bg-tertiary-fixed text-on-tertiary-fixed border-border-width border-on-surface py-4 px-6 font-label-bold text-label-bold uppercase flex justify-center items-center gap-2 neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all">
+<span class="material-symbols-outlined">add</span>
+    Nuevo
+</button>
+</div>
+</header>
+<!-- Data Table -->
+<div class="bg-white neubrutalist-border neubrutalist-shadow overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary-fixed border-b-border-width border-on-surface">
+<th class="p-4 font-table-header text-table-header text-on-surface uppercase border-r-border-width border-on-surface">DNI</th>
+<th class="p-4 font-table-header text-table-header text-on-surface uppercase border-r-border-width border-on-surface">Código Universitario</th>
+<th class="p-4 font-table-header text-table-header text-on-surface uppercase border-r-border-width border-on-surface">Nombres Completos</th>
+<th class="p-4 font-table-header text-table-header text-on-surface uppercase border-r-border-width border-on-surface">Escuela Profesional</th>
+<th class="p-4 font-table-header text-table-header text-on-surface uppercase text-center">Estado</th>
+<th class="p-4 font-table-header text-table-header text-on-surface uppercase text-center">Acciones</th>
+</tr>
+</thead>
+<tbody id="table-estudiantes" class="font-body-md text-body-md">
+</tbody>
+</table>
+</div>
+</div>
+<!-- Pagination (Simple Implementation) -->
+<div class="mt-8 flex justify-center items-center gap-4">
+<button class="bg-white p-2 neubrutalist-border neubrutalist-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="font-label-bold text-label-bold">Página 1 de 45</span>
+<button class="bg-white p-2 neubrutalist-border neubrutalist-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-gutter px-margin flex justify-between items-center mt-auto border-t-4 border-on-surface bg-surface-container-highest">
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 BiblioTech UNSCH Management System</span>
+<div class="flex gap-4">
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary underline transition-all" href="#">Política de Privacidad</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary underline transition-all" href="#">Soporte</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary underline transition-all" href="#">Documentación</a>
+</div>
+</footer>
+</div>
+
+<!-- Modal Drawer Nuevo Estudiante -->
+<div id="modal-nuevo-estudiante" class="hidden fixed inset-0 z-50 flex justify-end bg-black bg-opacity-50">
+    <div class="w-[450px] bg-surface h-full flex flex-col neubrutalist-shadow border-l-border-width border-on-surface">
+        <div class="p-6 border-b-border-width border-on-surface flex justify-between items-center">
+            <h2 class="font-headline-sm text-headline-sm font-bold uppercase">Nuevo Estudiante</h2>
+            <button id="btn-cerrar-modal" class="text-on-surface hover:text-error">
+                <span class="material-symbols-outlined text-[24px]">close</span>
+            </button>
+        </div>
+        <div class="p-6" style="max-height: 75vh; overflow-y: auto;">
+            <form id="form-nuevo-estudiante" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-1">
+                    <label for="input-dni" class="font-label-bold text-label-bold uppercase">DNI</label>
+                    <input type="text" id="input-dni" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="input-codigo" class="font-label-bold text-label-bold uppercase">Código Universitario</label>
+                    <input type="text" id="input-codigo" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="input-nombres" class="font-label-bold text-label-bold uppercase">Nombres Completos</label>
+                    <input type="text" id="input-nombres" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="input-escuela" class="font-label-bold text-label-bold uppercase">Escuela Profesional</label>
+                    <input type="text" id="input-escuela" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <button type="submit" class="mt-4 bg-primary-fixed text-on-primary-fixed border-border-width border-on-surface py-4 px-6 font-label-bold text-label-bold uppercase neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all w-full text-center">
+                    Guardar Estudiante
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="js/estudiantes.js"></script>
+</body></html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BiblioTech - Modo Administrador</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#ece7e7",
+                    "on-tertiary-fixed-variant": "#004f4f",
+                    "surface-bright": "#fdf8f8",
+                    "surface-container-highest": "#e6e1e1",
+                    "on-surface-variant": "#444933",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#c3f400",
+                    "surface-tint": "#506600",
+                    "on-primary-fixed": "#161f00",
+                    "secondary-fixed": "#ffd7f5",
+                    "on-secondary-container": "#500050",
+                    "outline-variant": "#c4c9ad",
+                    "on-tertiary-container": "#007070",
+                    "on-secondary-fixed": "#380038",
+                    "secondary-container": "#fe00fe",
+                    "tertiary-fixed": "#15fbfb",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#14fbfb",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f7f2f2",
+                    "surface": "#fdf8f8",
+                    "primary": "#506600",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f1edec",
+                    "secondary": "#a900a9",
+                    "on-secondary-fixed-variant": "#810081",
+                    "inverse-primary": "#abd600",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#ffabf3",
+                    "on-primary-container": "#556d00",
+                    "on-surface": "#1c1b1b",
+                    "inverse-surface": "#313030",
+                    "tertiary": "#006a6a",
+                    "outline": "#747a61",
+                    "surface-dim": "#ddd9d8",
+                    "on-background": "#1c1b1b",
+                    "surface-variant": "#e6e1e1",
+                    "tertiary-fixed-dim": "#00dddd",
+                    "background": "#fdf8f8",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f4f0ef",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#c3f400",
+                    "on-tertiary-fixed": "#002020",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#abd600",
+                    "on-primary-fixed-variant": "#3c4d00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max-width": "1440px",
+                    "border-width": "4px",
+                    "margin": "40px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Syne"],
+                    "body-lg": ["Montserrat"],
+                    "headline-sm": ["Syne"],
+                    "headline-md": ["Syne"],
+                    "label-bold": ["Montserrat"],
+                    "display-lg": ["Syne"],
+                    "body-sm": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "table-header": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                    "headline-sm": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                    "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                    "label-bold": ["14px", { "lineHeight": "1", "fontWeight": "700" }],
+                    "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                    "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "table-header": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "800" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .neubrutalist-border { border: 4px solid #1C1B1B; }
+        .neubrutalist-shadow { box-shadow: 8px 8px 0px 0px #1C1B1B; }
+        .neubrutalist-hover:hover { transform: translate(4px, 4px); box-shadow: 4px 4px 0px 0px #1C1B1B; }
+        .neubrutalist-active:active { transform: translate(8px, 8px); box-shadow: 0px 0px 0px 0px #1C1B1B; }
+        
+        .bar-chart-container { display: flex; align-items: flex-end; gap: 16px; height: 250px; padding: 24px 0; border-bottom: 4px solid #1C1B1B; }
+        .bar { width: 100%; border: 4px solid #1C1B1B; transition: all 0.3s ease; }
+        .bar:hover { filter: brightness(1.1); transform: translateY(-4px); box-shadow: 4px 4px 0px 0px #1C1B1B; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden md:flex flex-col h-full overflow-y-auto bg-surface w-64 neubrutalist-border border-l-0 border-t-0 border-b-0 shadow-[8px_0px_0px_0px_rgba(28,27,27,1)] z-50">
+<div class="p-6 border-b-4 border-on-background">
+<h1 class="font-headline-md text-headline-md font-black uppercase text-on-background">Biblio<div class="">Tech</div></h1>
+<p class="font-body-sm text-body-sm mt-2 font-bold"><span style="color: rgb(68, 73, 51); text-transform: uppercase; background-color: rgb(255, 215, 245);">UNSCH Admin</span></p>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-4">
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#FF00FF] text-on-background font-bold neubrutalist-border neubrutalist-shadow neubrutalist-hover neubrutalist-active transition-all duration-200" href="admin_dashboard.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Panel Global
+            </a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 px-4 py-3 bg-surface text-on-background font-bold neubrutalist-border neubrutalist-shadow neubrutalist-hover neubrutalist-active transition-all duration-200 hover:bg-primary-fixed" href="admin_personal.html">
+<span class="material-symbols-outlined">group</span>
+                Gestión de Personal
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-surface text-on-background font-bold neubrutalist-border neubrutalist-shadow neubrutalist-hover neubrutalist-active transition-all duration-200 hover:bg-primary-fixed" href="#">
+<span class="material-symbols-outlined">policy</span>
+                Auditoría
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-surface text-on-background font-bold neubrutalist-border neubrutalist-shadow neubrutalist-hover neubrutalist-active transition-all duration-200 hover:bg-primary-fixed" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+                Reportes
+            </a>
+</nav>
+<div class="p-6 border-t-4 border-on-background space-y-4">
+<button class="w-full py-3 bg-primary-container text-on-primary-fixed font-label-bold uppercase neubrutalist-border neubrutalist-shadow neubrutalist-hover neubrutalist-active transition-all flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                Nuevo Registro
+            </button>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-primary transition-colors font-bold" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+                </a>
+<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-error transition-colors font-bold" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-margin py-6 sticky top-0 z-40 bg-surface neubrutalist-border border-l-0 border-t-0 border-r-0 shadow-[0px_8px_0px_0px_rgba(28,27,27,1)]">
+<div>
+<h2 class="font-headline-sm text-headline-sm font-black text-on-background uppercase tracking-tight">Modo Administrador - Biblioteca Central</h2>
+<p id="admin-current-date" class="font-body-md text-on-surface-variant font-bold mt-1">Fecha</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="p-2 bg-surface neubrutalist-border shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] neubrutalist-hover neubrutalist-active">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 bg-surface neubrutalist-border shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] neubrutalist-hover neubrutalist-active">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="flex items-center gap-4 pl-6 border-l-4 border-on-background h-12">
+<div class="text-right hidden sm:block">
+<p id="header-user-name" class="font-label-bold text-label-bold uppercase text-on-background">Admin UNSCH</p>
+<p id="header-user-role" class="font-body-sm text-body-sm">Superusuario</p>
+</div>
+<img alt="Admin UNSCH Profile Photo" class="w-12 h-12 neubrutalist-border object-cover bg-surface-variant shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]" data-alt="A close-up portrait of a professional university administrator in a bright, modern neubrutalist setting. The lighting is high-key and high-contrast, emphasizing sharp details. The subject wears a clean, structured collar shirt, standing against a stark white wall. The overall aesthetic is highly detailed, realistic, and matches a bold, structural design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVxP0fTqxlKM2O1ZHTOjDA8HfR9mJyOCRFtuvFrEyPKIcJvZWwuoO-5IuN3R7go-hc1dqMe4KgxGWgh3JWlZHUri_hPq1EOW2pMqJbECpKPoFTSTdMtvtjZb4Ir8xmHE9yJbfGWp2ZUP5FvZllv1zOyVYVaLru__HqFuG2-ET2OonGq2ge1ED1xlQTl3BBGWz8NlaUxtchPY-xsaGl-lJ2_xh1ZHx_qlfmyUPkwX-1k7_Mc4yyrKq1irSW8xoCnDiQoBwzrZ9JE0U">
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-margin max-w-container-max-width w-full mx-auto space-y-gutter pb-24">
+<!-- Metric Cards (Top Row) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-primary-container p-6 neubrutalist-border neubrutalist-shadow hover:-translate-y-1 transition-transform duration-200 flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<h3 class="font-label-bold text-label-bold uppercase tracking-widest text-on-primary-fixed w-2/3">Total Usuarios del Sistema</h3>
+<span class="material-symbols-outlined text-[32px] text-on-primary-fixed" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+<p id="admin-count-usuarios" class="font-display-lg text-display-lg text-on-primary-fixed">12.4k</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-tertiary-fixed p-6 neubrutalist-border neubrutalist-shadow hover:-translate-y-1 transition-transform duration-200 flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<h3 class="font-label-bold text-label-bold uppercase tracking-widest text-on-tertiary-fixed w-2/3">Libros en Toda la Red</h3>
+<span class="material-symbols-outlined text-[32px] text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+<p id="admin-count-libros" class="font-display-lg text-display-lg text-on-tertiary-fixed">85.2k</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-secondary-fixed p-6 neubrutalist-border neubrutalist-shadow hover:-translate-y-1 transition-transform duration-200 flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<h3 class="font-label-bold text-label-bold uppercase tracking-widest text-on-secondary-fixed w-2/3">Préstamos Activos (Global)</h3>
+<span class="material-symbols-outlined text-[32px] text-on-secondary-fixed" style="font-variation-settings: 'FILL' 1;">sync_alt</span>
+</div>
+<p id="admin-count-activos" class="font-display-lg text-display-lg text-on-secondary-fixed">1,402</p>
+</div>
+<!-- Card 4 -->
+<div class="bg-error-container p-6 neubrutalist-border neubrutalist-shadow hover:-translate-y-1 transition-transform duration-200 flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<h3 class="font-label-bold text-label-bold uppercase tracking-widest text-on-error-container w-2/3">Total Morosos</h3>
+<span class="material-symbols-outlined text-[32px] text-on-error-container" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<p id="admin-count-morosos" class="font-display-lg text-display-lg text-on-error-container">348</p>
+</div>
+</section>
+<!-- Bottom Area Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter mt-12">
+<!-- Left Col: Table -->
+<div class="bg-surface p-8 neubrutalist-border neubrutalist-shadow flex flex-col">
+<h3 class="font-headline-sm text-headline-sm font-black uppercase border-b-4 border-on-background pb-4 mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-[32px]">support_agent</span>
+                        Préstamos Recientes
+                    </h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary-container border-b-4 border-on-background neubrutalist-border">
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-fixed border-r-4 border-on-background">Estudiante</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-fixed border-r-4 border-on-background">Libro</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-fixed">Estado</th>
+</tr>
+</thead>
+<tbody id="admin-table-movimientos">
+<tr class="border-b-4 border-on-background bg-surface-bright hover:bg-surface-variant transition-colors neubrutalist-border border-t-0">
+<td class="p-4 font-body-lg text-body-lg font-bold border-r-4 border-on-background">Piso 1 - Central</td>
+<td class="p-4 font-body-lg text-body-lg border-r-4 border-on-background">845</td>
+<td class="p-4">
+<span class="inline-block px-3 py-1 bg-primary-container text-on-primary-fixed font-label-bold text-label-bold uppercase neubrutalist-border shadow-[2px_2px_0px_0px_rgba(28,27,27,1)]">Óptimo</span>
+</td>
+</tr>
+<tr class="border-b-4 border-on-background bg-surface-bright hover:bg-surface-variant transition-colors neubrutalist-border border-t-0">
+<td class="p-4 font-body-lg text-body-lg font-bold border-r-4 border-on-background">Piso 2 - Ciencias</td>
+<td class="p-4 font-body-lg text-body-lg border-r-4 border-on-background">612</td>
+<td class="p-4">
+<span class="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-bold uppercase neubrutalist-border shadow-[2px_2px_0px_0px_rgba(28,27,27,1)]">Estable</span>
+</td>
+</tr>
+<tr class="bg-surface-bright hover:bg-surface-variant transition-colors neubrutalist-border border-t-0">
+<td class="p-4 font-body-lg text-body-lg font-bold border-r-4 border-on-background">Hemeroteca</td>
+<td class="p-4 font-body-lg text-body-lg border-r-4 border-on-background">203</td>
+<td class="p-4">
+<span class="inline-block px-3 py-1 bg-error-container text-on-error-container font-label-bold text-label-bold uppercase neubrutalist-border shadow-[2px_2px_0px_0px_rgba(28,27,27,1)]">Saturado</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Col: Bar Chart -->
+<div class="bg-surface p-8 neubrutalist-border neubrutalist-shadow flex flex-col">
+<div class="flex justify-between items-center border-b-4 border-on-background pb-4 mb-6">
+<h3 class="font-headline-sm text-headline-sm font-black uppercase flex items-center gap-3">
+<span class="material-symbols-outlined text-[32px]">monitoring</span>
+                            Tráfico Semanal
+                        </h3>
+<button id="btn-exportar" class="bg-surface px-4 py-2 neubrutalist-border shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] neubrutalist-hover neubrutalist-active font-label-bold text-label-bold uppercase">
+                            Exportar
+                        </button>
+</div>
+<div class="flex-1 flex flex-col justify-end">
+<div id="traffic-chart" class="bar-chart-container relative">
+<!-- Y-axis marks -->
+<div class="absolute left-0 top-0 bottom-0 w-full flex flex-col justify-between z-0 pointer-events-none opacity-20">
+<div class="border-t-4 border-on-background border-dashed w-full"></div>
+<div class="border-t-4 border-on-background border-dashed w-full"></div>
+<div class="border-t-4 border-on-background border-dashed w-full"></div>
+</div>
+<!-- Bars -->
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="bar bg-primary-container" style="height: 60%;"></div>
+<span class="font-label-bold text-label-bold uppercase">Lun</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="bar bg-[#00FFFF]" style="height: 85%;"></div>
+<span class="font-label-bold text-label-bold uppercase">Mar</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="bar bg-[#FF00FF]" style="height: 40%;"></div>
+<span class="font-label-bold text-label-bold uppercase">Mié</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="bar bg-[#FFFF00]" style="height: 90%;"></div>
+<span class="font-label-bold text-label-bold uppercase">Jue</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="bar bg-primary-container" style="height: 70%;"></div>
+<span class="font-label-bold text-label-bold uppercase">Vie</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="bar bg-[#00FFFF]" style="height: 30%;"></div>
+<span class="font-label-bold text-label-bold uppercase">Sáb</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="bar bg-[#FF00FF]" style="height: 10%;"></div>
+<span class="font-label-bold text-label-bold uppercase">Dom</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script src="js/admin_dashboard.js"></script>
+</body></html>

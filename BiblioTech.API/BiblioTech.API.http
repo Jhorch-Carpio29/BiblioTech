@@ -1,0 +1,6 @@
+@BiblioTech.API_HostAddress = http://localhost:5215
+
+GET {{BiblioTech.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

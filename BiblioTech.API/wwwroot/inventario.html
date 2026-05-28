@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="es" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BiblioTech - Catálogo de Libros</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Montserrat:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#007070",
+                        "tertiary-container": "#14fbfb",
+                        "on-secondary-container": "#500050",
+                        "surface-bright": "#fdf8f8",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f7f2f2",
+                        "on-surface": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#ffd7f5",
+                        "on-tertiary-fixed": "#002020",
+                        "inverse-primary": "#abd600",
+                        "surface-container-highest": "#e6e1e1",
+                        "outline": "#747a61",
+                        "tertiary-fixed-dim": "#00dddd",
+                        "surface-container": "#f1edec",
+                        "on-secondary-fixed": "#380038",
+                        "surface-dim": "#ddd9d8",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#abd600",
+                        "outline-variant": "#c4c9ad",
+                        "background": "#fdf8f8",
+                        "on-primary-fixed": "#161f00",
+                        "inverse-on-surface": "#f4f0ef",
+                        "secondary-container": "#fe00fe",
+                        "secondary": "#a900a9",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e6e1e1",
+                        "on-secondary-fixed-variant": "#810081",
+                        "primary-fixed": "#c3f400",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fdf8f8",
+                        "surface-tint": "#506600",
+                        "error": "#ba1a1a",
+                        "tertiary": "#006a6a",
+                        "primary-container": "#c3f400",
+                        "on-surface-variant": "#444933",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "tertiary-fixed": "#15fbfb",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-primary-container": "#556d00",
+                        "surface-container-high": "#ece7e7",
+                        "on-background": "#1c1b1b",
+                        "primary": "#506600"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "border-width": "4px",
+                        "gutter": "24px",
+                        "margin": "40px",
+                        "unit": "8px",
+                        "container-max-width": "1440px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Syne"],
+                        "headline-lg": ["Syne"],
+                        "body-lg": ["Montserrat"],
+                        "headline-md": ["Syne"],
+                        "body-md": ["Montserrat"],
+                        "body-sm": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "table-header": ["Montserrat"],
+                        "headline-sm": ["Syne"]
+                    },
+                    fontSize: {
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "table-header": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "800" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    },
+                    keyframes: {
+                        pulseLowStock: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.5 },
+                        }
+                    },
+                    animation: {
+                        pulseLowStock: 'pulseLowStock 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+        .neubrutalist-shadow {
+            box-shadow: 8px 8px 0px 0px #1C1B1B;
+        }
+        .neubrutalist-shadow-hover:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0px 0px #1C1B1B;
+        }
+        .neubrutalist-shadow-active:active {
+            transform: translate(8px, 8px);
+            box-shadow: 0px 0px 0px 0px #1C1B1B;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-50 bg-surface w-64 border-r-border-width border-on-surface">
+<div class="p-margin border-b-border-width border-on-surface"><div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl text-on-surface">menu_book</span>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-black uppercase text-on-surface leading-none"></h1><h1 class="text-xl font-black uppercase text-on-surface" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; font-size: 1.25rem; line-height: 1.75rem; --tw-text-opacity: 1; color: rgb(28, 27, 27); font-family: ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; outline: none !important; box-shadow: none !important;">BiblioTech</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant"><span style="font-weight: 700;">UNSCH Library Personal</span></p>
+</div>
+</div></div>
+<div class="flex-1 flex flex-col py-gutter">
+<a class="text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Panel</span>
+</a>
+<a class="bg-primary-container text-on-primary-container font-label-bold text-label-bold p-4 flex items-center gap-3 border-y-border-width border-on-surface neubrutalist-shadow -ml-1 mr-4 my-2 hover:bg-primary-container transition-all" href="inventario.html">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="">Libros</span>
+</a>
+<a class="text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors" href="estudiantes.html">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-bold text-label-bold">Usuarios</span>
+</a>
+<a class="text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors" href="prestamos.html">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-label-bold text-label-bold">Préstamos</span>
+</a>
+</div>
+<div class="p-gutter border-t-border-width border-on-surface mt-auto">
+<a href="prestamos.html" class="w-full bg-primary-fixed text-on-primary-fixed border-border-width border-on-surface py-3 px-4 font-label-bold text-label-bold uppercase flex justify-center items-center gap-2 neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all"><span class="material-symbols-outlined">add</span>
+NUEVO PRÉSTAMO</a>
+<a id="btn-logout" class="text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors mt-4" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-bold text-label-bold">Cerrar Sesión</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin py-4 w-full bg-background border-b-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(28,27,27,1)] z-40 sticky top-0">
+<div class="flex-1 flex items-center">
+<!-- Search bar would go here if needed per instructions, but sidebar handles nav -->
+</div>
+<div class="flex items-center gap-6"><button class="text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="text-on-surface hover:text-primary transition-colors">
+
+</button>
+<button class="text-on-surface hover:text-primary transition-colors">
+
+</button>
+<div class="flex items-center gap-3">
+    <div class="text-right hidden sm:flex flex-col justify-center">
+        <span id="header-user-name" class="font-label-bold text-label-bold leading-none uppercase">...</span>
+        <span id="header-user-role" class="text-xs font-bold text-on-surface-variant uppercase">...</span>
+    </div>
+    <div class="w-10 h-10 border-border-width border-on-surface bg-primary-container flex items-center justify-center neubrutalist-shadow overflow-hidden">
+        <img id="header-profile-img" src="" alt="Profile Photo" class="w-full h-full object-cover">
+    </div>
+</div></div>
+</header>
+<!-- Content Canvas -->
+<div class="p-margin flex-1 max-w-container-max-width mx-auto w-full">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase">Catálogo de Libros</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Gestiona el inventario de la biblioteca universitaria.</p>
+</div>
+<button id="btn-abrir-modal" class="bg-tertiary-fixed text-on-tertiary-fixed border-border-width border-on-surface py-4 px-6 font-label-bold text-label-bold uppercase flex justify-center items-center gap-2 neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all">
+<span class="material-symbols-outlined">add</span>
+                    Agregar Nuevo Libro
+                </button>
+</div>
+<!-- Neubrutalist Table -->
+<div class="w-full bg-surface-container-lowest border-border-width border-on-surface neubrutalist-shadow overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-primary-container border-b-border-width border-on-surface">
+<tr>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-container border-r-border-width border-on-surface">Título</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-container border-r-border-width border-on-surface">Autor</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-container border-r-border-width border-on-surface">ISBN</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-container border-r-border-width border-on-surface">Categoría</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-container border-r-border-width border-on-surface text-center">Stock Total</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-container border-r-border-width border-on-surface text-center">Stock Disponible</th>
+<th class="p-4 font-table-header text-table-header uppercase text-on-primary-container text-center w-24">Acciones</th>
+</tr>
+</thead>
+<tbody id="table-libros" class="font-body-md text-body-md">
+</tbody>
+</table>
+</div>
+<!-- Pagination (Simple Neubrutalist) -->
+<div class="mt-8 flex justify-end gap-4">
+<button class="bg-surface-container-lowest border-border-width border-on-surface px-4 py-2 font-label-bold uppercase neubrutalist-shadow hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_0px_#1C1B1B] active:translate-y-1 active:translate-x-1 active:shadow-[4px_4px_0px_0px_#1C1B1B] transition-all disabled:opacity-50 disabled:pointer-events-none" disabled="">Anterior</button>
+<div class="flex gap-2">
+<button class="bg-primary-container text-on-primary-container border-border-width border-on-surface w-10 h-10 flex items-center justify-center font-label-bold neubrutalist-shadow">1</button>
+<button class="bg-surface-container-lowest border-border-width border-on-surface w-10 h-10 flex items-center justify-center font-label-bold neubrutalist-shadow hover:bg-surface-container transition-colors">2</button>
+<button class="bg-surface-container-lowest border-border-width border-on-surface w-10 h-10 flex items-center justify-center font-label-bold neubrutalist-shadow hover:bg-surface-container transition-colors">3</button>
+</div>
+<button class="bg-surface-container-lowest border-border-width border-on-surface px-4 py-2 font-label-bold uppercase neubrutalist-shadow hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_0px_#1C1B1B] active:translate-y-1 active:translate-x-1 active:shadow-[4px_4px_0px_0px_#1C1B1B] transition-all">Siguiente</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-gutter px-margin flex justify-between items-center mt-auto bg-surface-container-highest border-t-4 border-on-surface">
+<p class="font-label-bold text-label-bold text-on-surface">© 2024 Sistema de Gestión BiblioTech UNSCH</p>
+<div class="flex gap-6">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Política de Privacidad</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Soporte</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Documentación</a>
+</div>
+</footer>
+</main>
+
+<!-- Lateral Drawer Modal para registrar libro -->
+<div id="modal-nuevo-libro" class="hidden fixed inset-0 z-50 flex justify-end bg-black bg-opacity-50">
+    <div class="w-[450px] bg-surface h-full flex flex-col neubrutalist-shadow border-l-border-width border-on-surface">
+        <div class="p-6 border-b-border-width border-on-surface flex justify-between items-center">
+            <h2 class="font-headline-sm text-headline-sm font-bold uppercase">Nuevo Libro</h2>
+            <button id="btn-cerrar-modal" class="text-on-surface hover:text-error">
+                <span class="material-symbols-outlined text-[24px]">close</span>
+            </button>
+        </div>
+        <div class="p-6" style="max-height: 75vh; overflow-y: auto;">
+            <form id="form-nuevo-libro" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-1">
+                    <label for="input-titulo" class="font-label-bold text-label-bold uppercase">Título</label>
+                    <input type="text" id="input-titulo" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="input-autor" class="font-label-bold text-label-bold uppercase">Autor</label>
+                    <input type="text" id="input-autor" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="input-isbn" class="font-label-bold text-label-bold uppercase">ISBN</label>
+                    <input type="text" id="input-isbn" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="input-categoria" class="font-label-bold text-label-bold uppercase">Categoría</label>
+                    <input type="text" id="input-categoria" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="input-stock" class="font-label-bold text-label-bold uppercase">Stock (Total y Disponible se asumen iguales)</label>
+                    <input type="number" id="input-stock" class="border-border-width border-on-surface bg-background p-3 neubrutalist-shadow font-body-md" required min="0">
+                </div>
+                <button type="submit" class="mt-4 bg-primary-fixed text-on-primary-fixed border-border-width border-on-surface py-4 px-6 font-label-bold text-label-bold uppercase neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all w-full text-center">
+                    Guardar Libro
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="js/inventario.js"></script>
+</body></html>
