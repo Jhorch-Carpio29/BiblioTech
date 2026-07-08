@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tableMovimientos = document.getElementById('admin-table-movimientos');
 
     let todosLosPrestamos = []; // Almacena para exportación
+    let todosLosMorosos = []; // Almacena para exportación de morosos
 
     try {
         // Usuarios
@@ -69,8 +70,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const resEstudiantes = await fetch('/api/Estudiantes');
         if (resEstudiantes.ok) {
             const data = await resEstudiantes.json();
-            const morosos = data.filter(e => e.esMoroso).length;
-            if (countMorosos) countMorosos.textContent = morosos;
+            todosLosMorosos = data.filter(e => e.esMoroso);
+            if (countMorosos) countMorosos.textContent = todosLosMorosos.length;
         }
 
         // Préstamos y Tabla Recientes
@@ -170,6 +171,40 @@ document.addEventListener('DOMContentLoaded', async () => {
             const link = document.createElement("a");
             link.setAttribute("href", url);
             link.setAttribute("download", "Reporte_BiblioTech_Trafico.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+
+    // Exportar CSV Morosos
+    const btnDescargarMorosos = document.getElementById('btn-descargar-morosos');
+    if (btnDescargarMorosos) {
+        btnDescargarMorosos.addEventListener('click', () => {
+            if (!todosLosMorosos || todosLosMorosos.length === 0) {
+                alert('No hay estudiantes morosos para exportar.');
+                return;
+            }
+
+            const headers = ["ID", "CodigoUniversitario", "DNI", "Nombres", "EscuelaProfesional"];
+            let csvContent = headers.join(",") + "\n";
+
+            todosLosMorosos.forEach(m => {
+                const row = [
+                    m.id,
+                    m.codigoUniversitario ? `"${m.codigoUniversitario.replace(/"/g, '""')}"` : "",
+                    m.dni ? `"${m.dni.replace(/"/g, '""')}"` : "",
+                    m.nombres ? `"${m.nombres.replace(/"/g, '""')}"` : "",
+                    m.escuelaProfesional ? `"${m.escuelaProfesional.replace(/"/g, '""')}"` : ""
+                ];
+                csvContent += row.join(",") + "\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "Reporte_BiblioTech_Morosos.csv");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
