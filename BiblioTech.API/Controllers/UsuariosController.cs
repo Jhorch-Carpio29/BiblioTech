@@ -86,4 +86,35 @@ public class UsuariosController : ControllerBase
 
         return Ok(res);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UsuarioUpdateDto dto)
+    {
+        var usuario = await _unitOfWork.Usuarios.GetByIdAsync(id);
+        if (usuario == null) return NotFound();
+
+        usuario.Dni = dto.Dni;
+        usuario.Nombres = dto.Nombres;
+        usuario.Email = dto.Email;
+        usuario.PisoArea = dto.PisoArea;
+        usuario.RolId = dto.RolId;
+        usuario.Activo = dto.Activo;
+
+        _unitOfWork.Usuarios.Update(usuario);
+        await _unitOfWork.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var usuario = await _unitOfWork.Usuarios.GetByIdAsync(id);
+        if (usuario == null) return NotFound();
+
+        _unitOfWork.Usuarios.Delete(usuario);
+        await _unitOfWork.SaveChangesAsync();
+
+        return NoContent();
+    }
 }

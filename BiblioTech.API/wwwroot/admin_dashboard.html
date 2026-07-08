@@ -115,7 +115,7 @@
 <aside class="hidden md:flex flex-col h-full overflow-y-auto bg-surface w-64 neubrutalist-border border-l-0 border-t-0 border-b-0 shadow-[8px_0px_0px_0px_rgba(28,27,27,1)] z-50">
 <div class="p-6 border-b-4 border-on-background">
 <h1 class="font-headline-md text-headline-md font-black uppercase text-on-background">Biblio<div class="">Tech</div></h1>
-<p class="font-body-sm text-body-sm mt-2 font-bold"><span style="color: rgb(68, 73, 51); text-transform: uppercase; background-color: rgb(255, 215, 245);">UNSCH Admin</span></p>
+<p id="sidebar-user-role-text" class="font-body-sm text-body-sm mt-2 font-bold"><span style="color: rgb(68, 73, 51); text-transform: uppercase; background-color: rgb(255, 215, 245);">UNSCH Admin</span></p>
 </div>
 <nav class="flex-1 px-4 py-6 space-y-4">
 <!-- Active Tab -->
@@ -143,11 +143,11 @@
                 Nuevo Registro
             </button>
 <div class="flex flex-col gap-2">
-<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-primary transition-colors font-bold" href="#">
-<span class="material-symbols-outlined">settings</span> Settings
+<a id="btn-configuracion" class="cursor-pointer flex items-center gap-3 py-2 text-on-surface-variant hover:text-primary transition-colors font-bold">
+<span class="material-symbols-outlined">settings</span> Configuración
                 </a>
-<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-error transition-colors font-bold" href="#">
-<span class="material-symbols-outlined">logout</span> Logout
+<a id="btn-logout" class="cursor-pointer flex items-center gap-3 py-2 text-on-surface-variant hover:text-error transition-colors font-bold">
+<span class="material-symbols-outlined">logout</span> Cerrar Sesión
                 </a>
 </div>
 </div>
@@ -174,7 +174,7 @@
 <p id="header-user-name" class="font-label-bold text-label-bold uppercase text-on-background">Admin UNSCH</p>
 <p id="header-user-role" class="font-body-sm text-body-sm">Superusuario</p>
 </div>
-<img alt="Admin UNSCH Profile Photo" class="w-12 h-12 neubrutalist-border object-cover bg-surface-variant shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]" data-alt="A close-up portrait of a professional university administrator in a bright, modern neubrutalist setting. The lighting is high-key and high-contrast, emphasizing sharp details. The subject wears a clean, structured collar shirt, standing against a stark white wall. The overall aesthetic is highly detailed, realistic, and matches a bold, structural design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVxP0fTqxlKM2O1ZHTOjDA8HfR9mJyOCRFtuvFrEyPKIcJvZWwuoO-5IuN3R7go-hc1dqMe4KgxGWgh3JWlZHUri_hPq1EOW2pMqJbECpKPoFTSTdMtvtjZb4Ir8xmHE9yJbfGWp2ZUP5FvZllv1zOyVYVaLru__HqFuG2-ET2OonGq2ge1ED1xlQTl3BBGWz8NlaUxtchPY-xsaGl-lJ2_xh1ZHx_qlfmyUPkwX-1k7_Mc4yyrKq1irSW8xoCnDiQoBwzrZ9JE0U">
+<img id="header-profile-img" alt="Admin UNSCH Profile Photo" class="w-12 h-12 neubrutalist-border object-cover bg-surface-variant shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]" data-alt="A close-up portrait of a professional university administrator in a bright, modern neubrutalist setting. The lighting is high-key and high-contrast, emphasizing sharp details. The subject wears a clean, structured collar shirt, standing against a stark white wall. The overall aesthetic is highly detailed, realistic, and matches a bold, structural design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVxP0fTqxlKM2O1ZHTOjDA8HfR9mJyOCRFtuvFrEyPKIcJvZWwuoO-5IuN3R7go-hc1dqMe4KgxGWgh3JWlZHUri_hPq1EOW2pMqJbECpKPoFTSTdMtvtjZb4Ir8xmHE9yJbfGWp2ZUP5FvZllv1zOyVYVaLru__HqFuG2-ET2OonGq2ge1ED1xlQTl3BBGWz8NlaUxtchPY-xsaGl-lJ2_xh1ZHx_qlfmyUPkwX-1k7_Mc4yyrKq1irSW8xoCnDiQoBwzrZ9JE0U">
 </div>
 </div>
 </header>
@@ -313,4 +313,55 @@
 </div>
 </main>
 <script src="js/admin_dashboard.js"></script>
+
+
+<!-- Modal Mi Perfil -->
+<div id="modal-perfil" class="hidden fixed inset-0 z-[70] flex justify-end bg-black bg-opacity-50">
+    <div class="w-[450px] bg-surface h-full flex flex-col shadow-[inset_4px_0_0_0_#1c1b1b]">
+        <div class="p-6 border-b-border-width border-on-surface flex justify-between items-center bg-surface-container-low">
+            <h2 class="font-headline-sm text-headline-sm font-bold uppercase flex items-center gap-2">
+                <span class="material-symbols-outlined">manage_accounts</span> Mi Perfil
+            </h2>
+            <button id="btn-cerrar-perfil" class="text-on-surface hover:text-error transition-colors">
+                <span class="material-symbols-outlined text-[28px]">close</span>
+            </button>
+        </div>
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div id="perfil-loading" class="flex items-center justify-center py-10">
+                <span class="material-symbols-outlined animate-spin text-4xl">progress_activity</span>
+            </div>
+            <form id="form-perfil" class="hidden flex flex-col gap-5">
+                <div class="flex flex-col gap-1 opacity-70">
+                    <label class="font-label-bold text-label-bold uppercase">DNI (No editable)</label>
+                    <input type="text" id="perfil-dni" class="border-border-width border-on-surface bg-surface-variant p-3 font-body-md" readonly>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-nombres" class="font-label-bold text-label-bold uppercase">Nombres y Apellidos</label>
+                    <input type="text" id="perfil-nombres" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-email" class="font-label-bold text-label-bold uppercase">Correo Institucional</label>
+                    <input type="email" id="perfil-email" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-area" class="font-label-bold text-label-bold uppercase">Piso / Área Asignada</label>
+                    <input type="text" id="perfil-area" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+                <div class="bg-surface-container-highest border-l-4 border-primary p-4 mt-2">
+                    <p class="font-body-sm text-body-sm text-on-surface-variant flex items-start gap-2">
+                        <span class="material-symbols-outlined text-base mt-0.5">info</span>
+                        Tus cambios se reflejarán en todo el sistema.
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="p-6 border-t-border-width border-on-surface bg-surface-container-low">
+            <button id="btn-guardar-perfil" form="form-perfil" type="submit" class="hidden w-full bg-primary-fixed text-on-primary-fixed border-border-width border-on-surface py-4 px-6 font-label-bold text-label-bold uppercase shadow-[8px_8px_0px_0px_rgba(28,27,27,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all text-center flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">save</span>
+                Guardar Cambios
+            </button>
+        </div>
+    </div>
+</div>
+
 </body></html>

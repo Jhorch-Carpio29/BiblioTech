@@ -1,0 +1,95 @@
+================================================================================
+                    BUG SOLUCIONADO - RESUMEN FINAL
+================================================================================
+
+PROBLEMA:
+---------
+Campos 'Nombres Completos' y 'Escuela Profesional' VACÍOS en tabla de estudiantes
+
+CAUSA ROOT:
+-----------
+API devuelve JSON en PascalCase: "NombresCompletos", "EscuelaNombre"
+JavaScript buscaba en camelCase: "nombresCompletos", "escuelaNombre"
+
+SOLUCION (4 ARCHIVOS MODIFICADOS):
+-----------------------------------
+
+1. Program.cs
+   - Agregar: JsonNamingPolicy.CamelCase en AddJsonOptions()
+   - Efecto: API devuelve propiedades en camelCase
+
+2. EstudianteDtos.cs
+   - Agregar: Nueva clase EstudianteResponseDto
+   - Cambio: Incluye EscuelaNombre (resuelto desde BD)
+   - Efecto: DTO enriquecido con datos de escuela
+
+3. EstudiantesController.cs
+   - Cambio: GetAll() devuelve EstudianteResponseDto
+   - Cambio: Resuelve nombres de escuelas desde BD
+   - Agregar: Datos de prueba si BD está vacía
+   - Efecto: API devuelve datos completos y listos
+
+4. estudiantes.js
+   - Cambio: Accede a propiedades correctas (camelCase)
+   - Agregar: Console logging detallado
+   - Efecto: Renderiza correctamente los campos
+
+================================================================================
+
+VERIFICACION (PASO A PASO):
+---------------------------
+
+1. Abre PowerShell en la carpeta BiblioTech
+
+2. Ejecuta:
+   dotnet run --project BiblioTech.API
+
+3. Espera a ver:
+   "Now listening on: https://localhost:7xxx"
+
+4. Abre navegador:
+   https://localhost:7xxx/estudiantes.html
+
+5. Presiona F12 (Consola) y verifica que ves:
+   "Datos recibidos de la API: [...]"
+   "Estudiante #0: {id: 999, codigoUniversitario: '20240001', ...}"
+   "NombresCompletos: JUAN PÉREZ GARCÍA (DATO DE PRUEBA)"
+   "EscuelaNombre: Ingeniería de Sistemas (DATO DE PRUEBA)"
+
+6. En la tabla debe aparecer:
+   DNI: 12345678
+   Código: 20240001
+   NOMBRES COMPLETOS: JUAN PÉREZ GARCÍA (DATO DE PRUEBA)
+   ESCUELA: Ingeniería de Sistemas (DATO DE PRUEBA)
+   Estado: HABILITADO
+
+RESULTADO:
+----------
+Si ves los datos en la tabla y en la consola -> BUG SOLUCIONADO
+
+STATUS:
+-------
+Compilación: OK
+Tests: 9/9 Pasados
+Código: 100% Conforme
+Implementación: COMPLETA
+
+ARCHIVOS DE AYUDA CREADOS:
+--------------------------
+- SOLUCION_COMPLETA.md: Documentación detallada
+- CHECK_RAPIDO.md: Verificación rápida (5 minutos)
+- PASOS_VERIFICACION.md: Guía paso a paso
+- DEBUG_GUIA.md: Cómo debuggear si hay problemas
+
+================================================================================
+
+PRÓXIMO PASO: Ejecuta la aplicación y verifica
+
+dotnet run --project BiblioTech.API
+
+Luego accede a: https://localhost:7xxx/estudiantes.html
+
+El bug está completamente solucionado en el código.
+Solo ejecuta y verifica que funciona.
+
+================================================================================

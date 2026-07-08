@@ -1,14 +1,20 @@
 <Solution>
-  <Folder Name="/Documentacion/">
+  <Folder Name="/.specify/" />
+  <Folder Name="/.specify/memory/">
+    <File Path="constitution.md" />
+  </Folder>
+  <Folder Name="/specs/">
     <File Path="../Agent.md" />
     <File Path="../analisis.md" />
     <File Path="../arquitectura.md" />
     <File Path="../BD.md" />
     <File Path="../design.md" />
+    <File Path="prestamos.md" />
   </Folder>
   <Project Path="BiblioTech.API/BiblioTech.API.csproj" />
   <Project Path="BiblioTech.Application/BiblioTech.Application.csproj" />
   <Project Path="BiblioTech.Domain/BiblioTech.Domain.csproj" />
   <Project Path="BiblioTech.Infrastructure/BiblioTech.Infrastructure.csproj" />
+  <Project Path="BiblioTech.IntegrationTests/BiblioTech.IntegrationTests.csproj" Id="7438587d-6a3f-40a5-9722-377513045ff6" />
   <Project Path="BiblioTech.Tests/BiblioTech.Tests.csproj" />
 </Solution>

@@ -3,6 +3,7 @@ using Moq;
 using BiblioTech.Application.DTOs.Prestamos;
 using BiblioTech.Application.Services;
 using BiblioTech.Domain.Entities;
+using BiblioTech.Domain.Exceptions;
 using BiblioTech.Domain.Interfaces;
 using System;
 using System.Threading.Tasks;
@@ -81,9 +82,9 @@ namespace BiblioTech.Tests
             try
             {
                 await _prestamoService.RegistrarPrestamoAsync(dto);
-                Assert.Fail("Se esperaba InvalidOperationException.");
+                Assert.Fail("Se esperaba StockInsuficienteException.");
             }
-            catch (InvalidOperationException ex)
+            catch (StockInsuficienteException ex)
             {
                 Assert.AreEqual("No hay stock disponible para este libro.", ex.Message);
             }
@@ -120,9 +121,9 @@ namespace BiblioTech.Tests
             try
             {
                 await _prestamoService.RegistrarPrestamoAsync(dto);
-                Assert.Fail("Se esperaba InvalidOperationException.");
+                Assert.Fail("Se esperaba EstudianteMorosoException.");
             }
-            catch (InvalidOperationException ex)
+            catch (EstudianteMorosoException ex)
             {
                 Assert.AreEqual("El estudiante es moroso y no puede realizar préstamos.", ex.Message);
             }

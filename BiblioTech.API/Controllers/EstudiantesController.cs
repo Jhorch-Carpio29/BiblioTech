@@ -19,18 +19,60 @@ public class EstudiantesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var estudiantes = await _unitOfWork.Estudiantes.GetAllAsync();
-        var dtos = estudiantes.Select(e => new EstudianteDto
+        try
         {
-            Id = e.Id,
-            CodigoUniversitario = e.CodigoUniversitario,
-            Dni = e.Dni,
-            NombresCompletos = e.NombresCompletos,
-            EscuelaId = e.EscuelaId,
-            EsMoroso = e.EsMoroso
-        });
+            System.Diagnostics.Debug.WriteLine("=== INICIANDO GetAll() ===");
 
-        return Ok(dtos);
+            var estudiantes = await _unitOfWork.Estudiantes.GetAllAsync();
+            System.Diagnostics.Debug.WriteLine($"✅ Estudiantes obtenidos: {estudiantes.Count()}");
+
+            var escuelas = await _unitOfWork.EscuelasProfesionales.GetAllAsync();
+            System.Diagnostics.Debug.WriteLine($"✅ Escuelas obtenidas: {escuelas.Count()}");
+
+            bool cambiosRealizados = false;
+            var respuesta = new List<object>();
+
+            foreach (var e in estudiantes)
+            {
+                var escuela = escuelas.FirstOrDefault(esc => esc.Id == e.EscuelaId);
+
+                // Auto-verificar morosidad
+                if (!e.EsMoroso)
+                {
+                    var prestamosActivos = await _unitOfWork.Prestamos.GetActivosByEstudianteAsync(e.Id);
+                    if (prestamosActivos.Any(p => p.FechaHoraLimite < DateTime.UtcNow))
+                    {
+                        e.EsMoroso = true;
+                        _unitOfWork.Estudiantes.Update(e);
+                        cambiosRealizados = true;
+                    }
+                }
+
+                respuesta.Add(new
+                {
+                    id = e.Id,
+                    codigoUniversitario = e.CodigoUniversitario,
+                    dni = e.Dni,
+                    nombresCompletos = e.NombresCompletos,
+                    escuelaNombre = escuela?.Nombre ?? "No asignada",
+                    esMoroso = e.EsMoroso
+                });
+            }
+
+            if (cambiosRealizados)
+            {
+                await _unitOfWork.SaveChangesAsync();
+            }
+
+            System.Diagnostics.Debug.WriteLine($"=== GetAll() Completado - Retornando {respuesta.Count} registros ===");
+            return Ok(respuesta);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"❌ ERROR EN GetAll(): {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Stack: {ex.StackTrace}");
+            return BadRequest(new { error = ex.Message, stackTrace = ex.StackTrace });
+        }
     }
 
     [HttpPost]
@@ -86,6 +128,39 @@ public class EstudiantesController : ControllerBase
         await _unitOfWork.SaveChangesAsync();
 
         return NoContent();
+    }
+
+    [HttpGet("buscar-dni/{dni}")]
+    public async Task<IActionResult> BuscarPorDni(string dni)
+    {
+        var estudiante = await _unitOfWork.Estudiantes.GetByCodigoODniAsync("", dni);
+        if (estudiante == null)
+            return NotFound(new { error = "No se encontró un estudiante con ese DNI." });
+
+        // Auto-verificar morosidad
+        if (!estudiante.EsMoroso)
+        {
+            var prestamosActivos = await _unitOfWork.Prestamos.GetActivosByEstudianteAsync(estudiante.Id);
+            if (prestamosActivos.Any(p => p.FechaHoraLimite < DateTime.UtcNow))
+            {
+                estudiante.EsMoroso = true;
+                _unitOfWork.Estudiantes.Update(estudiante);
+                await _unitOfWork.SaveChangesAsync();
+            }
+        }
+
+        var escuelas = await _unitOfWork.EscuelasProfesionales.GetAllAsync();
+        var escuela = escuelas.FirstOrDefault(e => e.Id == estudiante.EscuelaId);
+
+        return Ok(new
+        {
+            id = estudiante.Id,
+            dni = estudiante.Dni,
+            codigoUniversitario = estudiante.CodigoUniversitario,
+            nombresCompletos = estudiante.NombresCompletos,
+            escuelaNombre = escuela?.Nombre ?? "No asignada",
+            esMoroso = estudiante.EsMoroso
+        });
     }
 
     [HttpDelete("{id}")]

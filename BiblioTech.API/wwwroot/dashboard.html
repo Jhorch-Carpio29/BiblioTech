@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="light" lang="es" style=""><head>
+﻿<!DOCTYPE html><html class="light" lang="es" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>BiblioTech Dashboard</title>
@@ -130,7 +130,7 @@
 <img alt="UNSCH Logo" class="w-12 h-12 border-border-width border-on-surface shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]" data-alt="A striking minimalist neubrutalist logo design for a university library, featuring bold black outlines and a vibrant electric cyan accent color on a pristine white background. The style is raw, structural, and digital, reflecting a modern high-utility environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeanLrQlqnhlJCorJg8qDa3WOmmcagZyg5A3VYUCNN3-8Cw070cLC_oV_Jt5RUVWaOvE6ogzBuMZRQgFGQ3Z2_q8b_5KRf0oLywLIkCmo9imBU9C3AfX0zrUDSigx4TOD3eo9ZOlw0ByRTGqRcK0fgtwGnH_xV8j392YsnB55cAcI1HCqMbYs7bvSKNpCLWAZFxzXWj73zgJJ6bmdNxSihTxxRKCQUGHkn7hYDevcxl8wccbItWMUcqMg6_aDJ6XS7eIbcQieZ-Lc">
 <div>
 <div class="flex items-center gap-2"><span class="material-symbols-outlined text-headline-sm">library_books</span><h1 class="text-xl font-black uppercase text-on-surface">BiblioTech</h1></div>
-<p class="font-body-sm text-body-sm text-on-surface-variant font-bold mt-1">UNSCH Library Personal</p>
+<p id="sidebar-user-role-text" class="font-body-sm text-body-sm text-on-surface-variant font-bold mt-1">UNSCH Library Personal</p>
 </div>
 </div>
 <a href="prestamos.html" class="w-full bg-primary-container border-border-width border-on-surface text-on-surface font-label-bold text-label-bold py-4 uppercase shadow-[8px_8px_0px_0px_rgba(28,27,27,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add_circle</span> NUEVO PRÉSTAMO</a>
@@ -141,6 +141,7 @@
 <a class="text-on-surface-variant hover:bg-on-surface hover:text-on-secondary font-label-bold text-label-bold p-4 flex items-center gap-4 transition-all border-border-width border-transparent hover:border-on-surface" href="inventario.html"><span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">menu_book</span> Libros</a>
 <a class="text-on-surface-variant hover:bg-on-surface hover:text-on-secondary font-label-bold text-label-bold p-4 flex items-center gap-4 transition-all border-border-width border-transparent hover:border-on-surface" href="estudiantes.html"><span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">group</span> Usuarios</a>
 <a class="text-on-surface-variant hover:bg-on-surface hover:text-on-secondary font-label-bold text-label-bold p-4 flex items-center gap-4 transition-all border-border-width border-transparent hover:border-on-surface" href="prestamos.html"><span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">pending_actions</span> Préstamos</a>
+<a id="btn-configuracion" class="cursor-pointer text-on-surface-variant hover:bg-on-surface hover:text-on-secondary font-label-bold text-label-bold p-4 flex items-center gap-4 transition-all border-border-width border-transparent hover:border-on-surface"><span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings</span> Configuración</a>
 </div>
 <div class="p-4 border-t-border-width border-on-surface">
 <a id="btn-logout" class="text-on-surface-variant hover:bg-error hover:text-on-error font-label-bold text-label-bold p-4 flex items-center gap-4 transition-all border-border-width border-transparent hover:border-on-surface" href="#"><span class="material-symbols-outlined">logout</span> Cerrar Sesión</a>
@@ -158,7 +159,7 @@
 <button class="bg-surface-container-lowest border-border-width border-on-surface p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] hover:bg-primary-container transition-colors">
 <span class="material-symbols-outlined">notifications</span>
 </button>
-<div class="flex items-center gap-4 bg-surface-container border-border-width border-on-surface p-2 pr-6 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]">
+<div class="flex items-center gap-4 bg-surface-container border-border-width border-on-surface p-2 pr-6 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] cursor-pointer hover:bg-surface-container-highest transition-colors" id="btn-profile-dropdown">
 <img alt="Librarian Profile" class="w-10 h-10 border-2 border-on-surface" data-alt="A confident head librarian in a modern, well-lit academic setting. The lighting is high-key and bright white, typical of a modern light-mode neubrutalist UI. The background is simple and uncluttered, emphasizing sharp contrasts and structural clarity without distracting elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVqNcU_rm6wEoduAVQRk5b1E04lscMW4mDRE7yeBmCEH_RTeW4X44Fha_IyQEJYSZEtRcbh4L3x9DeSZphfnUF7zKoyvi5Dy1drYsdSVj0y77TzSkBlg4ub4Ddo7jg088W3QRaBH4zL7zbLbmdH8p6kIAb53rzbtcO9AUGU2XWoWMH6sTE8QCVVS8sjh4E4Hndv2kZ4Bnwd1DD3UPf2ii-xBB91rqq49BvvQ6t_hEidf64WCMQ0PIJLe8NNlnSkdsN3CunCUrmMxQ">
 <div class="text-right">
 <p id="header-user-name" class="font-label-bold text-label-bold text-on-surface">Maria Rossi</p>
@@ -278,5 +279,66 @@
 </footer>
 </div>
 </main>
+
+<!-- Modal Mi Perfil -->
+<div id="modal-perfil" class="hidden fixed inset-0 z-[60] flex justify-end bg-black bg-opacity-50">
+    <div class="w-[450px] bg-surface h-full flex flex-col shadow-[inset_4px_0_0_0_#1c1b1b]">
+        <div class="p-6 border-b-border-width border-on-surface flex justify-between items-center bg-surface-container-low">
+            <h2 class="font-headline-sm text-headline-sm font-bold uppercase flex items-center gap-2">
+                <span class="material-symbols-outlined">manage_accounts</span> Mi Perfil
+            </h2>
+            <button id="btn-cerrar-perfil" class="text-on-surface hover:text-error transition-colors">
+                <span class="material-symbols-outlined text-[28px]">close</span>
+            </button>
+        </div>
+        
+        <!-- Contenido Modal -->
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div id="perfil-loading" class="flex items-center justify-center py-10">
+                <span class="material-symbols-outlined animate-spin text-4xl">progress_activity</span>
+            </div>
+            
+            <form id="form-perfil" class="hidden flex flex-col gap-5">
+                <!-- Solo Lectura -->
+                <div class="flex flex-col gap-1 opacity-70">
+                    <label class="font-label-bold text-label-bold uppercase">DNI (No editable)</label>
+                    <input type="text" id="perfil-dni" class="border-border-width border-on-surface bg-surface-variant p-3 font-body-md" readonly>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-nombres" class="font-label-bold text-label-bold uppercase">Nombres y Apellidos</label>
+                    <input type="text" id="perfil-nombres" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+                
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-email" class="font-label-bold text-label-bold uppercase">Correo Institucional</label>
+                    <input type="email" id="perfil-email" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-area" class="font-label-bold text-label-bold uppercase">Piso / Área Asignada</label>
+                    <input type="text" id="perfil-area" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+
+                <!-- Info Box -->
+                <div class="bg-surface-container-highest border-l-4 border-primary p-4 mt-2">
+                    <p class="font-body-sm text-body-sm text-on-surface-variant flex items-start gap-2">
+                        <span class="material-symbols-outlined text-base mt-0.5">info</span>
+                        Tus cambios se reflejarán en todo el sistema y en tu firma de préstamos al guardar.
+                    </p>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Botón Guardar -->
+        <div class="p-6 border-t-border-width border-on-surface bg-surface-container-low">
+            <button id="btn-guardar-perfil" form="form-perfil" type="submit" class="hidden w-full bg-primary-fixed text-on-primary-fixed border-border-width border-on-surface py-4 px-6 font-label-bold text-label-bold uppercase shadow-[8px_8px_0px_0px_rgba(28,27,27,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all text-center flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">save</span>
+                Guardar Cambios
+            </button>
+        </div>
+    </div>
+</div>
 <script src="js/dashboard.js"></script>
 </body></html>
+

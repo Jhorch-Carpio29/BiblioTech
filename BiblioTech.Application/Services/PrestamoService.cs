@@ -1,6 +1,7 @@
 using BiblioTech.Application.DTOs.Prestamos;
 using BiblioTech.Application.Interfaces;
 using BiblioTech.Domain.Entities;
+using BiblioTech.Domain.Exceptions;
 using BiblioTech.Domain.Interfaces;
 
 namespace BiblioTech.Application.Services;
@@ -20,15 +21,29 @@ public class PrestamoService : IPrestamoService
         if (libro == null)
             throw new InvalidOperationException("El libro no existe.");
 
-        if (libro.StockDisponible == 0)
-            throw new InvalidOperationException("No hay stock disponible para este libro.");
+        // R41: Validación de gestión de stock
+        if (libro.StockDisponible <= 0)
+            throw new StockInsuficienteException();
 
         var estudiante = await _unitOfWork.Estudiantes.GetByIdAsync(dto.EstudianteId);
         if (estudiante == null)
             throw new InvalidOperationException("El estudiante no existe.");
 
         if (estudiante.EsMoroso)
-            throw new InvalidOperationException("El estudiante es moroso y no puede realizar préstamos.");
+            throw new EstudianteMorosoException();
+
+        // Verificar automáticamente si tiene préstamos activos vencidos
+        var prestamosActivos = await _unitOfWork.Prestamos.GetActivosByEstudianteAsync(estudiante.Id);
+        if (prestamosActivos.Any(p => p.FechaHoraLimite < DateTime.UtcNow))
+        {
+            if (!estudiante.EsMoroso)
+            {
+                estudiante.EsMoroso = true;
+                _unitOfWork.Estudiantes.Update(estudiante);
+                await _unitOfWork.SaveChangesAsync();
+            }
+            throw new EstudianteMorosoException();
+        }
 
         if (dto.FechaHoraLimite <= DateTime.UtcNow)
             throw new InvalidOperationException("La fecha límite debe ser mayor a la fecha actual.");

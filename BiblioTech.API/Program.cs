@@ -18,7 +18,11 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+    });
 
 // Configure Database
 builder.Services.AddDbContext<BiblioTechDbContext>(options =>
@@ -33,6 +37,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+var connectionString = builder.Configuration.GetConnectionString("SupabaseConnection");
+Console.WriteLine("CADENA DE CONEXIÓN REAL: " + connectionString);
 
 app.UseCors("AllowAll");
 
@@ -53,3 +60,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public partial class Program { }
+
+

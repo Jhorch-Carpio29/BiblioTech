@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+﻿<!DOCTYPE html><html lang="es" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>BiblioTech - Catálogo de Libros</title>
@@ -132,7 +132,7 @@
 <span class="material-symbols-outlined text-4xl text-on-surface">menu_book</span>
 <div>
 <h1 class="font-headline-sm text-headline-sm font-black uppercase text-on-surface leading-none"></h1><h1 class="text-xl font-black uppercase text-on-surface" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; font-size: 1.25rem; line-height: 1.75rem; --tw-text-opacity: 1; color: rgb(28, 27, 27); font-family: ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; outline: none !important; box-shadow: none !important;">BiblioTech</h1>
-<p class="font-body-sm text-body-sm text-on-surface-variant"><span style="font-weight: 700;">UNSCH Library Personal</span></p>
+<p id="sidebar-user-role-text" class="font-body-sm text-body-sm text-on-surface-variant font-bold">UNSCH Library Personal</p>
 </div>
 </div></div>
 <div class="flex-1 flex flex-col py-gutter">
@@ -152,6 +152,10 @@
 <span class="material-symbols-outlined">pending_actions</span>
 <span class="font-label-bold text-label-bold">Préstamos</span>
 </a>
+<a id="btn-configuracion" class="cursor-pointer text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container p-4 flex items-center gap-3 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Configuración</span>
+</a>
 </div>
 <div class="p-gutter border-t-border-width border-on-surface mt-auto">
 <a href="prestamos.html" class="w-full bg-primary-fixed text-on-primary-fixed border-border-width border-on-surface py-3 px-4 font-label-bold text-label-bold uppercase flex justify-center items-center gap-2 neubrutalist-shadow neubrutalist-shadow-hover neubrutalist-shadow-active transition-all"><span class="material-symbols-outlined">add</span>
@@ -169,24 +173,17 @@ NUEVO PRÉSTAMO</a>
 <div class="flex-1 flex items-center">
 <!-- Search bar would go here if needed per instructions, but sidebar handles nav -->
 </div>
-<div class="flex items-center gap-6"><button class="text-on-surface hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[24px]">notifications</span>
+<div class="flex items-center gap-6"><button class="bg-surface-container-lowest border-border-width border-on-surface p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">notifications</span>
 </button>
-<button class="text-on-surface hover:text-primary transition-colors">
-
-</button>
-<button class="text-on-surface hover:text-primary transition-colors">
-
-</button>
-<div class="flex items-center gap-3">
-    <div class="text-right hidden sm:flex flex-col justify-center">
-        <span id="header-user-name" class="font-label-bold text-label-bold leading-none uppercase">...</span>
-        <span id="header-user-role" class="text-xs font-bold text-on-surface-variant uppercase">...</span>
-    </div>
-    <div class="w-10 h-10 border-border-width border-on-surface bg-primary-container flex items-center justify-center neubrutalist-shadow overflow-hidden">
-        <img id="header-profile-img" src="" alt="Profile Photo" class="w-full h-full object-cover">
-    </div>
-</div></div>
+<div class="flex items-center gap-4 bg-surface-container border-border-width border-on-surface p-2 pr-6 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] cursor-pointer hover:bg-surface-container-highest transition-colors" id="btn-profile-dropdown">
+<img id="header-profile-img" alt="Librarian Profile" class="w-10 h-10 border-2 border-on-surface" src="">
+<div class="text-right">
+<p id="header-user-name" class="font-label-bold text-label-bold text-on-surface">...</p>
+<p id="header-user-role" class="font-table-header text-table-header text-on-surface-variant">...</p>
+</div>
+</div>
+</div>
 </header>
 <!-- Content Canvas -->
 <div class="p-margin flex-1 max-w-container-max-width mx-auto w-full">
@@ -279,5 +276,53 @@ NUEVO PRÉSTAMO</a>
     </div>
 </div>
 
+<!-- Modal Mi Perfil -->
+<div id="modal-perfil" class="hidden fixed inset-0 z-[70] flex justify-end bg-black bg-opacity-50">
+    <div class="w-[450px] bg-surface h-full flex flex-col shadow-[inset_4px_0_0_0_#1c1b1b]">
+        <div class="p-6 border-b-border-width border-on-surface flex justify-between items-center bg-surface-container-low">
+            <h2 class="font-headline-sm text-headline-sm font-bold uppercase flex items-center gap-2">
+                <span class="material-symbols-outlined">manage_accounts</span> Mi Perfil
+            </h2>
+            <button id="btn-cerrar-perfil" class="text-on-surface hover:text-error transition-colors">
+                <span class="material-symbols-outlined text-[28px]">close</span>
+            </button>
+        </div>
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div id="perfil-loading" class="flex items-center justify-center py-10">
+                <span class="material-symbols-outlined animate-spin text-4xl">progress_activity</span>
+            </div>
+            <form id="form-perfil" class="hidden flex flex-col gap-5">
+                <div class="flex flex-col gap-1 opacity-70">
+                    <label class="font-label-bold text-label-bold uppercase">DNI (No editable)</label>
+                    <input type="text" id="perfil-dni" class="border-border-width border-on-surface bg-surface-variant p-3 font-body-md" readonly>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-nombres" class="font-label-bold text-label-bold uppercase">Nombres y Apellidos</label>
+                    <input type="text" id="perfil-nombres" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-email" class="font-label-bold text-label-bold uppercase">Correo Institucional</label>
+                    <input type="email" id="perfil-email" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="perfil-area" class="font-label-bold text-label-bold uppercase">Piso / Área Asignada</label>
+                    <input type="text" id="perfil-area" class="border-border-width border-on-surface bg-background p-3 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] font-body-md focus:bg-primary-container focus:outline-none transition-colors" required>
+                </div>
+                <div class="bg-surface-container-highest border-l-4 border-primary p-4 mt-2">
+                    <p class="font-body-sm text-body-sm text-on-surface-variant flex items-start gap-2">
+                        <span class="material-symbols-outlined text-base mt-0.5">info</span>
+                        Tus cambios se reflejarán en todo el sistema.
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="p-6 border-t-border-width border-on-surface bg-surface-container-low">
+            <button id="btn-guardar-perfil" form="form-perfil" type="submit" class="hidden w-full bg-primary-fixed text-on-primary-fixed border-border-width border-on-surface py-4 px-6 font-label-bold text-label-bold uppercase shadow-[8px_8px_0px_0px_rgba(28,27,27,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(28,27,27,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all text-center flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">save</span>
+                Guardar Cambios
+            </button>
+        </div>
+    </div>
+</div>
 <script src="js/inventario.js"></script>
 </body></html>

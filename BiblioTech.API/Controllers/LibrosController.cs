@@ -97,6 +97,26 @@ public class LibrosController : ControllerBase
         return NoContent();
     }
 
+    [HttpGet("buscar-isbn/{isbn}")]
+    public async Task<IActionResult> BuscarPorIsbn(string isbn)
+    {
+        var libro = await _unitOfWork.Libros.GetByIsbnAsync(isbn);
+        if (libro == null)
+            return NotFound(new { error = "No se encontró un libro con ese ISBN." });
+
+        var categoria = await _unitOfWork.Categorias.GetByIdAsync(libro.CategoriaId);
+
+        return Ok(new
+        {
+            id = libro.Id,
+            isbn = libro.Isbn,
+            titulo = libro.Titulo,
+            autor = libro.Autor,
+            stockDisponible = libro.StockDisponible,
+            categoriaNombre = categoria?.Nombre ?? string.Empty
+        });
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
