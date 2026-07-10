@@ -54,3 +54,5 @@ R51 El sistema debe ser fácil de usar, con una estética minimalista, textos en
 R52 El sistema debe cargar y mostrar los datos del dashboard en un tiempo de respuesta promedio que no supere los 3 segundos.
 
 R53 El sistema debe permitir al administrador descargar un reporte rápido de estudiantes morosos en formato CSV mediante un botón intuitivo en la interfaz.
+
+R54 El sistema debe incluir un botón de "Políticas de Préstamo" exclusivo en la barra de navegación del MODO PERSONAL (Bibliotecario) que despliegue una ventana emergente (modal o alerta) detallando de forma clara los términos del servicio, específicamente el límite de tiempo de entrega y la restricción de un máximo de 3 libros prestados por estudiante.
